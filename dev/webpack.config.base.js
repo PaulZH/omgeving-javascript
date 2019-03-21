@@ -7,6 +7,7 @@ fs.emptyDir(path.resolve(__dirname, '../dist'));
 module.exports = {
     entry: {
         // "VIEW-NAME": './src/js/VIEW-NAME.js'
+        "ld-view": './src/js/ld-view.js'
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
