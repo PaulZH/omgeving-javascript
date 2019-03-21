@@ -42,6 +42,7 @@
   },
   "scripts": {
     "app": "nodemon dev/app.js",
-    "ui-dev": "webpack-cli --watch --config dev/webpack.config.dev.js --colors --progress --hide-modules || true"
+    "ui-dev": "webpack-dev-server --config dev/webpack.config.dev.js",
+    "ui-prod": "webpack-cli --watch --config config/webpack.config.prod.js --colors --progress --hide-modules || true"
   }
 }
