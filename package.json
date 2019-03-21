@@ -38,6 +38,7 @@
     "webpack-cli": "^3.1.2"
   },
   "scripts": {
+    "app": "node dev/app.js",
     "ui-dev": "webpack-cli --watch --config dev/webpack.config.dev.js --colors --progress --hide-modules || true"
   }
 }
