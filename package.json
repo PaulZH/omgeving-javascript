@@ -26,6 +26,7 @@
     "express": "^4.16.4",
     "file-loader": "^2.0.0",
     "fs-extra": "^7.0.1",
+    "hbs": "^4.0.3",
     "material-design-icons-iconfont": "^4.0.2",
     "node-sass": "^4.10.0",
     "sass-loader": "^7.1.0",
