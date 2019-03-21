@@ -1,6 +1,9 @@
 
 import Vue from 'vue'
 
+// enable components
+Vue.component('ld-view', () => import(/* webpackChunkName: "ld" */ '../vue/ld-view'));
+
 // HMR, auto-refresh CSS
 if (module && module.hot) {
     module.hot.addStatusHandler(status => {
