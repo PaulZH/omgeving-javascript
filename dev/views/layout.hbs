@@ -1,0 +1,22 @@
+<html xmlns:qudt="http://qudt.org/schema/qudt#">
+<head>
+    <title>{{ title }}{{ titleSuffix }}</title>
+    <link rel="shortcut icon" href="/img/favicon.ico"></link>
+</head>
+<body about="">
+    <div id="header">
+        <div id="logo">
+            <a href="/">
+                <span>LNE</span>
+            </a>
+        </div>
+    </div>
+    <div id="content">
+        <ld-view>
+            {{{ body }}}
+        </ld-view>
+    </div>
+    {{> footer }}
+    <script type="application/javascript" src="http://localhost:3001/dist/ld-view-bundle.js"></script>
+</body>
+</html>
