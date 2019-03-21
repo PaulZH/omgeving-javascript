@@ -2,11 +2,11 @@ const path = require('path');
 const fs = require('fs-extra');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-fs.emptyDir('../dist');
+fs.emptyDir(path.resolve(__dirname, '../dist'));
 
 module.exports = {
     entry: {
-        // "VIEW-NAME": './views/VIEW-NAME.js'
+        // "VIEW-NAME": './src/js/VIEW-NAME.js'
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
@@ -16,11 +16,6 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin()
     ],
-    optimization: {
-        runtimeChunk: {
-            name: 'webpack-runtime'
-        }
-    },
     module: {
         rules: [
             {
