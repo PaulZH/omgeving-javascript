@@ -18,5 +18,10 @@ app.locals.titleSuffix = ' - Departement Omgeving - Linked Data'
 
 // define routes
 app.get('/', (req, res) => {
+    res.render('department', {
+        title: 'Departement Omgeving',
+        titleSuffix: ' - Linked Data',
+    });
 });
+
 app.listen(port, () => console.log(`Dev server listening on port ${port}!`));
