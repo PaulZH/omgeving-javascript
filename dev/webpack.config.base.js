@@ -7,12 +7,13 @@ fs.emptyDir(path.resolve(__dirname, '../dist'));
 module.exports = {
     entry: {
         // "VIEW-NAME": './src/js/VIEW-NAME.js'
-        "ld-view": './src/js/ld-view.js'
+        "polyfill": './src/js/polyfill.js',
+        "ld-view-bundle": './src/js/ld-view.js'
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
         publicPath: 'dist/',
-        filename: '[name]-bundle.js?[chunkhash:4]'
+        filename: '[name].js?[chunkhash:4]'
     },
     plugins: [
         new VueLoaderPlugin()
