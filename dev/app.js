@@ -1,16 +1,21 @@
 const express = require('express');
+const hbs = require('hbs');
+const proxy = require('http-proxy-middleware');
+
+// init app
 const app = express();
-const port = 3000;
-let hbs = require('hbs');
+
+// proxy websocket to webpack dev server
+app.use('/sockjs-node', proxy({target: 'http://localhost:3001/', ws: true}));
+
+// proxy bundle requests to webpack dev server
+app.use('/dist', proxy({target: 'http://localhost:3001/', ws: true}));
+//app.use('/dist', express.static(__dirname + '/../dist')); // prod
 
 // configure handlebars
 app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/../src/partials');
-
-// define static paths
-app.use('/dist', express.static(__dirname + '/../dist'));
-app.use('/img', express.static(__dirname + '/../src/img'));
 
 // define locals
 hbs.localsAsTemplateData(app);
@@ -24,4 +29,5 @@ app.get('/', (req, res) => {
     });
 });
 
+const port = 3000;
 app.listen(port, () => console.log(`Dev server listening on port ${port}!`));
