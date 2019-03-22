@@ -24,6 +24,8 @@
 </script>
 
 <style lang="scss">
+    @import "../css/theme";
+
     body {
         transition: opacity 1s;
     }
