@@ -17,13 +17,12 @@ if (module && module.hot) {
 }
 
 // start Vue
-document.addEventListener("DOMContentLoaded", () => {
+setTimeout(() => {
     if (!document.querySelector('#content')) {
-        return;
+        return console.warn('#content element not available');
     }
 
 	window.vueApp = new Vue({
 		el: '#content'
 	});
-});
-
+}, 1);
