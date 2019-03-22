@@ -50,10 +50,8 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[path][name].[ext]?[hash:4]',
-                            publicPath: './',
-                            emitFile: false,
-                            useRelativePath: false
+                            name: '[name].[ext]?[hash:4]',
+                            useRelativePath: true
                         }
                     }
                 ]
