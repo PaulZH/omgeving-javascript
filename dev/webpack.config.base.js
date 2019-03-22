@@ -9,7 +9,7 @@ module.exports = {
     entry: {
         // "VIEW-NAME": './src/js/VIEW-NAME.js'
         "polyfill": './src/js/polyfill.js',
-        "ld-view-bundle": './src/js/ld-view.js'
+        "index": './src/js/index.js'
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
