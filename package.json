@@ -23,6 +23,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-regenerator-runtime": "^6.5.0",
+    "copy-webpack-plugin": "^5.0.1",
     "css-loader": "^1.0.1",
     "express": "^4.16.4",
     "file-loader": "^2.0.0",
