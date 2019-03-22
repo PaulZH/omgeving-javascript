@@ -14,6 +14,10 @@
         computed: {
         },
 
+        mounted() {
+            document.querySelector('body').style.opacity = 1;
+        },
+
         methods: {
         }
     }
@@ -21,6 +25,7 @@
 
 <style lang="scss">
     body {
+        transition: opacity 1s;
     }
 </style>
 <style lang="scss" scoped>
