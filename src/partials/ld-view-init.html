@@ -1,12 +1,18 @@
 <script>
-    // load polyfill if needed
-    if (!window.Promise || !window.Symbol || !NodeList.prototype.forEach) {
-        let polyfillScript = document.createElement('script');
-        polyfillScript.src = '/dist/polyfill.js';
-        document.head.appendChild(polyfillScript);
-    }
-    // activate components in #content
-    let bundleScript = document.createElement('script');
-    bundleScript.src = '/dist/ld-view-bundle.js';
-    document.head.appendChild(bundleScript);
+    (function () {
+        // define base URL (e.g. '/')
+        const baseUrl = '/';
+
+        // load polyfill if needed
+        if (!window.Promise || !window.Symbol || !NodeList.prototype.forEach) {
+            let polyfillScript = document.createElement('script');
+            polyfillScript.src = baseUrl + 'dist/polyfill.js';
+            document.head.appendChild(polyfillScript);
+        }
+
+        // activate components in #content
+        let bundleScript = document.createElement('script');
+        bundleScript.src = baseUrl + 'dist/ld-view-bundle.js';
+        document.head.appendChild(bundleScript);
+    })();
 </script>
