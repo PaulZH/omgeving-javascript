@@ -1,5 +1,10 @@
 <template>
     <div class="ld-view">
+        <department-header>
+            <a href="https://www.vlaanderen.be/nl">Vlaanderen</a>
+            <a href="https://www.lne.be/">Departement Omgeving</a>
+            <a href="/">Linked Data</a>
+        </department-header>
         <slot></slot>
     </div>
 </template>
@@ -26,9 +31,6 @@
 <style lang="scss">
     @import "../css/theme";
 
-    body {
-        transition: opacity 1s;
-    }
 </style>
 <style lang="scss" scoped>
     .ld-view {
