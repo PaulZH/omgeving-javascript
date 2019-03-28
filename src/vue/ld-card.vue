@@ -9,15 +9,6 @@
         data() {
             return {
             }
-        },
-
-        computed: {
-        },
-
-        mounted() {
-        },
-
-        methods: {
         }
     }
 </script>
@@ -30,7 +21,7 @@
         background-color: #fff;
 
         + .ld-card {
-            margin-top: 30px;
+            margin-top: 32px;
         }
     }
 </style>
