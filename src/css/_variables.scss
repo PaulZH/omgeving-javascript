@@ -29,6 +29,10 @@ $border-color-light: rgba(0, 0, 0, 0.1);
 $border-color-dark: #cbd2da;
 $border-color-green: #42796d;
 
+$card-title-color: #fff;
+$card-title-bg-color: #4da692;
+
+
 $footer-bg-color: #fff;
 $footer-color: #333332;
 $footer-claim-color: #3b3b3c;
@@ -46,4 +50,8 @@ $table-zebra-bg-color: #f9f9f9;
   @media (max-width: 1040px) {
     width: 96%;
   }
+}
+
+@mixin box-shadow() {
+  box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.15);
 }

@@ -3,6 +3,9 @@ import Vue from 'vue'
 
 // enable components
 Vue.component('ld-view', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-view'));
+Vue.component('ld-card', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-card'));
+Vue.component('ld-card-title', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-card-title'));
+Vue.component('ld-card-content', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-card-content'));
 
 // HMR, auto-refresh CSS
 if (module && module.hot) {
