@@ -5,7 +5,9 @@
             <a href="https://www.lne.be/">Departement Omgeving</a>
             <a href="/">Linked Data</a>
         </department-header>
-        <slot></slot>
+        <div class="content">
+            <slot></slot>
+        </div>
     </div>
 </template>
 
@@ -30,9 +32,13 @@
 
 <style lang="scss">
     @import "../css/theme";
-
 </style>
 <style lang="scss" scoped>
+    @import "../css/_variables";
+
     .ld-view {
+        > .content {
+            @include layout();
+        }
     }
 </style>
