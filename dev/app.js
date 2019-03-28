@@ -1,11 +1,12 @@
 const express = require('express');
 const hbs = require('hbs');
 const proxy = require('http-proxy-middleware');
+const port = 3000;
 
 // init app
 const app = express();
 
-// proxy websocket to webpack dev server
+// proxy websocket requests to webpack dev server
 app.use('/sockjs-node', proxy({target: 'http://localhost:3001/', ws: true}));
 
 // proxy bundle requests to webpack dev server
@@ -19,7 +20,7 @@ hbs.registerPartials(__dirname + '/../src/partials');
 
 // define locals
 hbs.localsAsTemplateData(app);
-app.locals.titleSuffix = ' - Departement Omgeving - Linked Data'
+app.locals.titleSuffix = ' - Departement Omgeving - Linked Data';
 
 // define routes
 app.get('/', (req, res) => {
@@ -29,5 +30,4 @@ app.get('/', (req, res) => {
     });
 });
 
-const port = 3000;
 app.listen(port, () => console.log(`Dev server listening on port ${port}!`));
