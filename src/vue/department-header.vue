@@ -90,6 +90,7 @@
             background: #fff url(../img/website-header-bg.png) center top no-repeat;
             @media (max-width: 845px) {
                 background: #fff;
+                border-bottom: 1px solid $border-color-green;
             }
 
             .banner-contents {
