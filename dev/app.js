@@ -14,7 +14,7 @@ app.use('/dist', proxy({target: 'http://localhost:3001/', ws: true}));
 //app.use('/dist', express.static(__dirname + '/../dist')); // prod
 
 // configure handlebars
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/../src/views');
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/../src/partials');
 
