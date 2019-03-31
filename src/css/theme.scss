@@ -1,7 +1,6 @@
 @import './fonts';
 @import './_variables';
 @import './reset';
-@import './content';
 @import './footer';
 @import './print';
 
@@ -19,5 +18,47 @@ body {
   #header {
       display: none;
   }
+
+  #content .content {
+
+    padding-top: 36px;
+    padding-bottom: 140px;
+
+    // lists
+    ul {
+      padding: 4px 16px 4px 24px;
+
+      li {
+        margin: 8px 0;
+      }
+    }
+
+    // links
+    a {
+      text-decoration: none;
+      color: $link-color;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+
+
+    // headings
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: $font-heading-light;
+      color: $heading-color-dark;
+    }
+
+    h1 {
+      font-size: 36px;
+      line-height: 1.2em;
+      color: $heading-color;
+      margin-bottom: 1em;
+    }
+  }
+
 }
 
