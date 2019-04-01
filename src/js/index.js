@@ -7,6 +7,8 @@ Vue.component('ld-card', () => import(/* webpackChunkName: "ld-components" */ '.
 Vue.component('ld-card-title', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-card-title'));
 Vue.component('ld-card-content', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-card-content'));
 Vue.component('department-header', () => import(/* webpackChunkName: "ld-components" */ '../vue/department-header'));
+Vue.component('flex-container', () => import(/* webpackChunkName: "ld-components" */ '../vue/flex-container'));
+Vue.component('flex-item', () => import(/* webpackChunkName: "ld-components" */ '../vue/flex-item'));
 
 // HMR, auto-refresh CSS
 if (module && module.hot) {
