@@ -25,21 +25,22 @@
     @import "../css/_variables";
 
     .department-header {
+        @include box-shadow();
 
         .breadcrumbs {
             width: 100%;
-            background-color: #fff;
+            background-color: $white;
             line-height: 44px;
             height: 45px;
 
-            font-family: $font-header;
+            font-family: $font-header-light;
             font-weight: bold;
             font-size: 15px;
             color: $header-color;
             border-bottom: 1px solid $border-color-dark;
 
             a {
-                color: $header-link-color;
+                color: $header-link-color !important;
                 text-decoration: none;
                 display: inline-block;
                 vertical-align: middle;
@@ -88,6 +89,7 @@
         .banner {
             height: 132px;
             background: #fff url(../img/website-header-bg.png) center top no-repeat;
+
             @media (max-width: 845px) {
                 background: #fff;
                 border-bottom: 1px solid $border-color-green;
