@@ -19,9 +19,15 @@
     .ld-card {
         @include box-shadow();
         background-color: #fff;
+        margin-bottom: 16px;
 
-        + .ld-card {
-            margin-top: 32px;
+        &.dark {
+            background-color: $green-dark;
+            color: $white;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
         }
     }
 </style>

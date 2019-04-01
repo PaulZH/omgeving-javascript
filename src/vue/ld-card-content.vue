@@ -17,6 +17,6 @@
     @import "../css/_variables";
 
     .ld-card-content {
-        padding: 16px;
+        padding: 14px 16px 16px;
     }
 </style>

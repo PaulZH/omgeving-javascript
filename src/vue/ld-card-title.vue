@@ -17,15 +17,26 @@
     @import "../css/_variables";
 
     .ld-card-title {
-        background-color: $card-title-bg-color;
-        color: $card-title-color;
-        padding: 8px 16px;
-        line-height: 30px;
-        font-family: $font-header;
+        padding: 8px 16px 9px 16px;
+        line-height: 28px;
+        font-family: $font-header-light;
         font-size: 20px;
+        color: $card-title-color;
+        background-color: $card-title-bg-color;
+        border-bottom: 1px solid $green;
 
         a {
             color: $card-title-color !important;
+        }
+
+        &.dark {
+            color: $card-title-color-dark;
+            background-color: $card-title-bg-color-dark;
+            border-bottom: none;
+
+            a {
+                color: $card-title-color-dark !important;
+            }
         }
     }
 </style>
