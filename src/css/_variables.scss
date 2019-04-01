@@ -71,6 +71,6 @@ $flex-mobile-max-width: 599px;
   }
 }
 
-@mixin box-shadow() {
-  box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.15);
+@mixin box-shadow($blur: 8px) {
+  box-shadow: 0 0 $blur rgba(0, 0, 0, 0.1);
 }
