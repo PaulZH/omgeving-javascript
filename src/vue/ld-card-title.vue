@@ -1,13 +1,19 @@
 <template>
-    <div class="ld-card-title">
+    <div class="ld-card-title" :class="{'has-img': img}">
         <slot></slot>
     </div>
 </template>
 
 <script>
     export default {
+        props: ['img'],
         data() {
             return {
+            }
+        },
+        mounted() {
+            if (this.img) {
+                this.$el.style.backgroundImage = 'url(' + this.img + ')';
             }
         }
     }
@@ -37,6 +43,12 @@
             a {
                 color: $card-title-color-dark !important;
             }
+        }
+
+        &.has-img {
+            background-size: cover;
+            background-position: top center;
+            padding-top: 80px;
         }
     }
 </style>
