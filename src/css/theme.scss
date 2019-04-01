@@ -13,52 +13,105 @@ body {
   position: relative;
   // enable fade-in
   transition: opacity 1s;
-
-  // hide old header
-  #header {
-      display: none;
-  }
-
-  #content .content {
-
-    padding-top: 36px;
-    padding-bottom: 140px;
-
-    // lists
-    ul {
-      padding: 4px 16px 4px 24px;
-
-      li {
-        margin: 8px 0;
-      }
-    }
-
-    // links
-    a {
-      text-decoration: none;
-      color: $link-color;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-
-
-    // headings
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: $font-heading-light;
-      color: $heading-color-dark;
-    }
-
-    h1 {
-      font-size: 36px;
-      line-height: 1.2em;
-      color: $heading-color;
-      margin-bottom: 1em;
-    }
-  }
-
+}
+// hide old header
+#header {
+    display: none;
 }
 
+#content {
+
+  .content {
+    padding-top: 36px;
+    padding-bottom: 140px;
+  }
+
+  // lists
+  ul {
+    padding: 4px 16px 4px 24px;
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    li {
+      margin: 8px 0;
+      line-height: 1.2em;
+    }
+  }
+
+  // links
+  a {
+    text-decoration: none;
+    color: $link-color;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .dark {
+    background-color: $green-dark;
+    color: $grey-light;
+
+    * {
+      color: $grey-light;
+    }
+
+    a {
+      color: $white;
+    }
+  }
+
+  p {
+    line-height: 1.5em;
+
+    &.intro {
+      font-size: 1.2em;
+    }
+  }
+
+  // headings
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-heading-light;
+    color: $heading-color;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h1 {
+    font-size: 36px;
+    line-height: 1.2em;
+    margin-bottom: 1em;
+  }
+
+  h2 {
+    font-size: 24px;
+    line-height: 1.2em;
+    margin-bottom: 0.5em;
+  }
+
+  h3 {
+    font-size: 22px;
+    line-height: 1.2em;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+   h2 + h3 {
+     margin-top: -0.5em;
+   }
+
+  img {
+    max-width: 100%;
+  }
+}
