@@ -114,4 +114,67 @@ body {
   img {
     max-width: 100%;
   }
+
+  form {
+    position: relative;
+
+    .fields {
+      padding: 4px 16px;
+
+      input, select, textarea {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 14px;
+        line-height: 18px;
+        border: 1px solid $border-color-dark;
+        vertical-align: top;
+        margin-bottom: 5px;
+
+        &:focus {
+          border: 1px solid $border-color-green;
+        }
+      }
+
+      textarea {
+        min-height: 250px;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        line-height: 14px;
+      }
+
+      select {
+        height: 36px;
+      }
+    }
+
+    .buttons {
+      padding: 0 16px 12px;
+      text-align: left;
+
+      button {
+        display: inline-block;
+        margin-right: 7px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        padding: 0 12px;
+        line-height: 40px;
+        font-size: 14px;
+        background-color: $green;
+        border: none;
+        color: #fff;
+
+        &:hover, &:focus {
+          background-color: #42796d;
+        }
+      }
+
+      .status {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+    }
+  }
 }
