@@ -18,6 +18,8 @@ Vue.component('flex-container', () => import(/* webpackChunkName: "ui" */ '../vu
 Vue.component('flex-item', () => import(/* webpackChunkName: "ui" */ '../vue/flex-item'));
 
 Vue.component('ld-lookup-form', () => import(/* webpackChunkName: "api-explorer" */ '../vue/ld-lookup-form'));
+Vue.component('ld-search-form', () => import(/* webpackChunkName: "api-explorer" */ '../vue/ld-search-form'));
+
 // HMR, auto-refresh CSS
 if (module && module.hot) {
     module.hot.addStatusHandler(status => {
