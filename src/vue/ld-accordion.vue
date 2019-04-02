@@ -34,10 +34,6 @@
                         }
                     }
                 })
-            },
-
-            lastEvent() {
-                return this.$store.state.data.event;
             }
         }
     }
