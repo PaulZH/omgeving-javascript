@@ -17,6 +17,7 @@ Vue.component('ld-accordion', () => import(/* webpackChunkName: "ui" */ '../vue/
 Vue.component('flex-container', () => import(/* webpackChunkName: "ui" */ '../vue/flex-container'));
 Vue.component('flex-item', () => import(/* webpackChunkName: "ui" */ '../vue/flex-item'));
 
+Vue.component('ld-lookup-form', () => import(/* webpackChunkName: "api-explorer" */ '../vue/ld-lookup-form'));
 // HMR, auto-refresh CSS
 if (module && module.hot) {
     module.hot.addStatusHandler(status => {

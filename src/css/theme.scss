@@ -165,8 +165,10 @@ body {
         border: none;
         color: #fff;
 
-        &:hover, &:focus {
+        &:hover, &:focus, &::-moz-focus-inner {
           background-color: #42796d;
+          outline: 0;
+          border: 0;
         }
       }
 
@@ -177,5 +179,16 @@ body {
         font-size: 14px;
       }
     }
+  }
+
+  // animations
+
+  .pulsing {
+    animation: pulsing 2s infinite;
+  }
+
+  @keyframes pulsing {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
   }
 }
