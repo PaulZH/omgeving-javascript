@@ -122,30 +122,35 @@ body {
     .fields {
       padding: 4px 16px;
 
-      input, select, textarea {
-        width: 100%;
-        padding: 8px 10px;
-        font-size: 14px;
-        line-height: 18px;
-        border: 1px solid $border-color-dark;
-        vertical-align: top;
-        margin-bottom: 5px;
+    }
 
-        &:focus {
-          border: 1px solid $border-color-green;
-        }
-      }
+    .flex-item {
+      padding-bottom: 8px;
+    }
 
-      textarea {
-        min-height: 250px;
-        font-family: "Courier New", monospace;
-        font-size: 13px;
-        line-height: 14px;
-      }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 14px;
+      line-height: 18px;
+      border: 1px solid $border-color-dark;
+      vertical-align: top;
+      margin-bottom: 5px;
 
-      select {
-        height: 36px;
+      &:focus {
+        border: 1px solid $border-color-green;
       }
+    }
+
+    textarea {
+      min-height: 250px;
+      font-family: "Courier New", monospace;
+      font-size: 13px;
+      line-height: 14px;
+    }
+
+    select {
+      height: 36px;
     }
 
     .buttons {
