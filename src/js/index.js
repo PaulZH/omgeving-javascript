@@ -6,14 +6,15 @@ import Vuex from 'vuex'
 // Vuex
 Vue.use(Vuex);
 // enable components
-Vue.component('ld-view', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-view'));
-Vue.component('ld-card', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-card'));
-Vue.component('ld-card-title', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-card-title'));
-Vue.component('ld-card-content', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-card-content'));
-Vue.component('department-header', () => import(/* webpackChunkName: "ld-components" */ '../vue/department-header'));
-Vue.component('flex-container', () => import(/* webpackChunkName: "ld-components" */ '../vue/flex-container'));
-Vue.component('flex-item', () => import(/* webpackChunkName: "ld-components" */ '../vue/flex-item'));
+Vue.component('department-header', () => import(/* webpackChunkName: "layout" */ '../vue/department-header'));
+
+Vue.component('ld-view', () => import(/* webpackChunkName: "ui" */ '../vue/ld-view'));
+Vue.component('ld-card', () => import(/* webpackChunkName: "ui" */ '../vue/ld-card'));
+Vue.component('ld-card-title', () => import(/* webpackChunkName: "ui" */ '../vue/ld-card-title'));
+Vue.component('ld-card-content', () => import(/* webpackChunkName: "ui" */ '../vue/ld-card-content'));
 Vue.component('ld-accordion', () => import(/* webpackChunkName: "ui" */ '../vue/ld-accordion'));
+Vue.component('flex-container', () => import(/* webpackChunkName: "ui" */ '../vue/flex-container'));
+Vue.component('flex-item', () => import(/* webpackChunkName: "ui" */ '../vue/flex-item'));
 
 // HMR, auto-refresh CSS
 if (module && module.hot) {
