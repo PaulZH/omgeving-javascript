@@ -1,6 +1,10 @@
 
 import Vue from 'vue'
+import Vuex from 'vuex'
 
+
+// Vuex
+Vue.use(Vuex);
 // enable components
 Vue.component('ld-view', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-view'));
 Vue.component('ld-card', () => import(/* webpackChunkName: "ld-components" */ '../vue/ld-card'));
@@ -28,7 +32,8 @@ setTimeout(() => {
         return console.warn('#content element not available');
     }
 
-	window.vueApp = new Vue({
-		el: '#content'
-	});
+    window.vueApp = new Vue({
+        el: '#content',
+        store: new Vuex.Store()
+    });
 }, 1);
