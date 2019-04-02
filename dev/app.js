@@ -30,4 +30,10 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/zendantennes/home', (req, res) => {
+    res.render('zendantennes-home', {
+        title: 'Zendantennes'
+    });
+});
+
 app.listen(port, () => console.log(`Dev server listening on port ${port}!`));
