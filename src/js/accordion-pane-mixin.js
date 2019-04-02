@@ -46,7 +46,7 @@ export default {
         initToggle() {
             this.$paneToggle.removeEventListener('click', this.togglePane);
             this.$paneToggle.addEventListener('click', this.togglePane);
-            if (location.hash && location.hash === '#' + this.name) {
+            if (location.hash && location.hash.match(new RegExp('^#' + this.name))) {
                 this.selectedPane = this;
             }
         },
