@@ -18,6 +18,9 @@ app.set('views', __dirname + '/../src/views');
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/../src/partials');
 
+// define static paths
+app.use('/samples', express.static(__dirname + '/../src/samples'));
+
 // define locals
 hbs.localsAsTemplateData(app);
 app.locals.titleSuffix = ' - Departement Omgeving - Linked Data';
