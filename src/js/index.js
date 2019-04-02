@@ -13,6 +13,7 @@ Vue.component('ld-card-content', () => import(/* webpackChunkName: "ld-component
 Vue.component('department-header', () => import(/* webpackChunkName: "ld-components" */ '../vue/department-header'));
 Vue.component('flex-container', () => import(/* webpackChunkName: "ld-components" */ '../vue/flex-container'));
 Vue.component('flex-item', () => import(/* webpackChunkName: "ld-components" */ '../vue/flex-item'));
+Vue.component('ld-accordion', () => import(/* webpackChunkName: "ui" */ '../vue/ld-accordion'));
 
 // HMR, auto-refresh CSS
 if (module && module.hot) {
