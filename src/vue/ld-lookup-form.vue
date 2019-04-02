@@ -41,7 +41,7 @@
                     .split(/[\r\n]+/)
                     .filter(line => !line.match(/^#/) && !line.match(/^\s*$/))
                     .map((line) => {
-                        const parts = line.match(/^([^\s]+)\s+(.+)$/) || ['', ''];// `URI LABEL`
+                        const parts = line.match(/^([^\s]+)\s+(.+)$/) || ['', '', ''];// `URI LABEL`
                         return {
                             value: parts[1],
                             label: parts[2]
