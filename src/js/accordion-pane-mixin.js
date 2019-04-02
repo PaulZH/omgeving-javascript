@@ -22,6 +22,10 @@ export default {
     watch: {
         selectedPane(value) {
             if (value === this) {
+                // prevent page from shrinking and scrolling up during toggling
+                let $content = document.querySelector('#content');
+                $content.style.minHeight = $content.getBoundingClientRect().height + 'px';
+                // activate pane
                 this.$el.classList.add('active');
                 this.$pane.style.minHeight = this.calcHeight() + 'px';
                 location.hash = this.name;
