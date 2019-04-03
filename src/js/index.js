@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueResource from 'vue-resource'
+import _debounce from 'lodash.debounce'
 
 
 // activate Vuetify
@@ -50,6 +51,9 @@ setTimeout(() => {
         return console.warn('#content element not available');
     }
 
+    window._ = {
+        debounce: _debounce
+    };
 
     window.vueApp = new Vue({
         el: '#content',
