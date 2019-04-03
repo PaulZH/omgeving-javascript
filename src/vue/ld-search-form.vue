@@ -37,7 +37,7 @@
 
         methods: {
             parseSamples(response) {
-                this.sampleOptions = response.data
+                this.sampleOptions = response.body
                     .split(/[\r\n]+/)
                     .filter(line => !line.match(/^#/) && !line.match(/^\s*$/))
                     .map((line) => {

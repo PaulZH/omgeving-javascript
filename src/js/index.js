@@ -1,7 +1,7 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+import VueResource from 'vue-resource'
 
 
 // activate Vuetify
@@ -13,6 +13,10 @@ Vue.use(Vuetify);
 
 // Vuex
 Vue.use(Vuex);
+
+// Vue Resource
+Vue.use(VueResource);
+
 // enable components
 Vue.component('department-header', () => import(/* webpackChunkName: "layout" */ '../vue/department-header'));
 
@@ -46,15 +50,16 @@ setTimeout(() => {
         return console.warn('#content element not available');
     }
 
-    window.http = axios.create({
-        baseURL: '/',
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-    });
 
     window.vueApp = new Vue({
         el: '#content',
-        store: new Vuex.Store({})
+        store: new Vuex.Store({}),
+        http: {
+            root: '/',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            credentials: true
+        }
     });
-}, 1);
+}, 100);

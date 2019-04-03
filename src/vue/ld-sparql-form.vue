@@ -87,7 +87,7 @@
             },
 
             parseSamples(response) {
-                this.sampleOptions = response.data
+                this.sampleOptions = response.body
                     .split(/(^|[\r\n]+)##/)
                     .filter((chunk) => {
                         return !chunk.match(/^[\r\n\s]*$/)
