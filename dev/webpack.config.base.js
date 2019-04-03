@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 fs.emptyDir(path.resolve(__dirname, '../dist'));
 
@@ -17,6 +18,7 @@ module.exports = {
         filename: '[name].js?[chunkhash:4]'
     },
     plugins: [
+        new VuetifyLoaderPlugin(),
         new VueLoaderPlugin(),
         new CopyWebpackPlugin([
             { from: './src/img/favicon.ico', to: 'img/favicon.ico' },
@@ -48,6 +50,14 @@ module.exports = {
                     'vue-style-loader',
                     'css-loader',
                     'sass-loader'
+                ]
+            },
+            {
+                test: /\.styl$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'stylus-loader'
                 ]
             },
             {
