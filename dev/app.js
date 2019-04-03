@@ -20,6 +20,7 @@ hbs.registerPartials(__dirname + '/../src/partials');
 
 // define static paths
 app.use('/samples', express.static(__dirname + '/../src/samples'));
+app.use('/queries', express.static(__dirname + '/../src/queries'));
 
 // define locals
 hbs.localsAsTemplateData(app);
@@ -36,6 +37,12 @@ app.get('/', (req, res) => {
 app.get('/zendantennes/home', (req, res) => {
     res.render('zendantennes-home', {
         title: 'Zendantennes'
+    });
+});
+
+app.get('/id/straling', (req, res) => {
+    res.render('collection-straling', {
+        title: 'Straling'
     });
 });
 

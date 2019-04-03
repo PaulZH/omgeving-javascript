@@ -196,4 +196,19 @@ body {
     0%, 100% { opacity: 0; }
     50% { opacity: 1; }
   }
+
+  .loader {
+    height: 2px;
+    background-color: transparent;
+
+    &.loading {
+      animation: loading 5s infinite;
+      background-color: $green;
+    }
+  }
+
+  @keyframes loading {
+    0%, 100% { width: 0; }
+    50% { width: 100%; }
+  }
 }

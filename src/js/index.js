@@ -33,6 +33,8 @@ Vue.component('ld-lookup-form', () => import(/* webpackChunkName: "api-explorer"
 Vue.component('ld-sparql-form', () => import(/* webpackChunkName: "api-explorer" */ '../vue/ld-sparql-form'));
 Vue.component('ld-search-form', () => import(/* webpackChunkName: "api-explorer" */ '../vue/ld-search-form'));
 
+Vue.component('ld-data-table', () => import(/* webpackChunkName: "data-table" */ '../vue/ld-data-table'));
+
 // HMR, auto-refresh CSS
 if (module && module.hot) {
     module.hot.addStatusHandler(status => {
