@@ -26,11 +26,7 @@ export default {
                 return;
             }
 
-            if (!window.http) {
-                return setTimeout(this.fetchSamples, 100);
-            }
-
-            window.http.get(this.samples).then(this.parseSamples);
+            this.$http.get(this.samples).then(this.parseSamples);
         },
 
         onReset() {
