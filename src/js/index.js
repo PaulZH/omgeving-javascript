@@ -6,11 +6,11 @@ import _debounce from 'lodash.debounce'
 
 
 // activate Vuetify
-import Vuetify from 'vuetify/lib'
+//import Vuetify from 'vuetify/lib'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 //import 'vuetify/dist/vuetify.min.css'
 //import 'vuetify/src/stylus/app.styl'
-Vue.use(Vuetify);
+//Vue.use(Vuetify);
 
 // Vuex
 Vue.use(Vuex);
