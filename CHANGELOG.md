@@ -7,7 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 * \-
 
-## [0.0.1] - YYYY-MM-DD
+## [1.0.0] - 2019-04-04
 
-### Added|Changed|Deprecated|Removed|Fixed|Security
-* \-
+### Added
+
+* Dev server
+* Demo and samples
+* Components
+  * `department-header`
+  * `flex-container`
+  * `flex-item`
+  * `ld-accordion`
+  * `ld-card`
+  * `ld-card-content`
+  * `ld-card-title`
+  * `ld-data-table`
+  * `ld-lookup-form`
+  * `ld-search-form`
+  * `ld-sparql-form`
+  * `ld-view`
+* Readme
