@@ -35,6 +35,8 @@ Vue.component('ld-search-form', () => import(/* webpackChunkName: "api-explorer"
 
 Vue.component('ld-data-table', () => import(/* webpackChunkName: "data-table" */ '../vue/ld-data-table'));
 
+Vue.component('ld-map', () => import(/* webpackChunkName: "map" */ '../vue/ld-map'));
+
 // HMR, auto-refresh CSS
 if (module && module.hot) {
     module.hot.addStatusHandler(status => {
