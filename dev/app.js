@@ -46,4 +46,11 @@ app.get('/id/straling', (req, res) => {
     });
 });
 
+app.get('/id/resource/1', (req, res) => {
+    res.render('resource-1', {
+        title: 'Sample Resource',
+        uri: 'http://localhost:3000/id/resource/1#id'
+    });
+});
+
 app.listen(port, () => console.log(`Dev server listening on port ${port}!`));
