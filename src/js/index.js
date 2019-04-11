@@ -25,6 +25,10 @@ Vue.component('ld-accordion', () => import(/* webpackChunkName: "ui" */ '../vue/
 Vue.component('flex-container', () => import(/* webpackChunkName: "ui" */ '../vue/flex-container'));
 Vue.component('flex-item', () => import(/* webpackChunkName: "ui" */ '../vue/flex-item'));
 
+Vue.component('ld-subject', () => import(/* webpackChunkName: "data" */ '../vue/ld-subject'));
+Vue.component('ld-predicate', () => import(/* webpackChunkName: "data" */ '../vue/ld-predicate'));
+Vue.component('ld-object', () => import(/* webpackChunkName: "data" */ '../vue/ld-object'));
+
 Vue.component('ld-lookup-form', () => import(/* webpackChunkName: "api-explorer" */ '../vue/ld-lookup-form'));
 Vue.component('ld-sparql-form', () => import(/* webpackChunkName: "api-explorer" */ '../vue/ld-sparql-form'));
 Vue.component('ld-search-form', () => import(/* webpackChunkName: "api-explorer" */ '../vue/ld-search-form'));
