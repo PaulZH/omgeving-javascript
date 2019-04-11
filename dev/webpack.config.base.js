@@ -9,7 +9,7 @@ fs.emptyDir(path.resolve(__dirname, '../dist'));
 module.exports = {
     entry: {
         // "VIEW-NAME": './src/js/VIEW-NAME.js'
-        "polyfill": './src/js/polyfill.js',
+        "babel-polyfill": './src/js/babel-polyfill.js',
         "index": './src/js/index.js'
     },
     output: {

@@ -6,10 +6,10 @@
         // hide body until styles are loaded
         document.querySelector('body').style.opacity = 0;
 
-        // load polyfill if needed
-        if (!window.Promise || !window.Symbol || !NodeList.prototype.forEach) {
+        // load babel polyfill if needed
+        if (!window.Promise || !window.Symbol) {
             let polyfillScript = document.createElement('script');
-            polyfillScript.src = baseUrl + 'dist/polyfill.js';
+            polyfillScript.src = baseUrl + 'dist/babel-polyfill.js';
             document.head.appendChild(polyfillScript);
         }
 
