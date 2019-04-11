@@ -3,7 +3,7 @@
 # mod_rewrite). Additionally, this reduces the matching process for the
 # start page (path "/") because otherwise Apache will apply the rewriting rules
 # to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
-DirectoryIndex index.html
+DirectoryIndex views/index.html
 
 # By default, Apache does not evaluate symbolic links if you did not enable this
 # feature in your server configuration. Uncomment the following line if you
@@ -37,8 +37,9 @@ DirectoryIndex index.html
 
     # rewrite views
 	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteRule ^(zendantennes/home)$ zendantennes/home.html [QSA,NC,L]
-	RewriteRule ^(id/straling)$ id/straling.html [QSA,NC,L]
+	RewriteRule ^(zendantennes/home)$ views/zendantennes-home.html [QSA,NC,L]
+	RewriteRule ^(id/straling)$ views/resource-list-straling.html [QSA,NC,L]
+	RewriteRule ^(id/resource/1)$ views/resource-1.html [QSA,NC,L]
 
     # rewrite favicon
 	RewriteCond %{REQUEST_FILENAME} !-f
