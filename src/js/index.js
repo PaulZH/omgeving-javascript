@@ -1,17 +1,12 @@
 
-import Vue from 'vue'
-import Vuex from 'vuex'
-import VueResource from 'vue-resource'
-import _debounce from 'lodash.debounce'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import VueResource from 'vue-resource';
+import _debounce from 'lodash.debounce';
 import './polyfills';
 
 
-// activate Vuetify
-//import Vuetify from 'vuetify/lib'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
-//import 'vuetify/dist/vuetify.min.css'
-//import 'vuetify/src/stylus/app.styl'
-//Vue.use(Vuetify);
 
 // Vuex
 Vue.use(Vuex);
