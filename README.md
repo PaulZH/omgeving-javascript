@@ -130,3 +130,64 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
             search-fields="?uri ?label"
             resource="https://data.zendantennes.omgeving.vlaanderen.be/ns/zendantenne#Straling"
         ></ld-data-table>
+
+### < ld-map >
+
+* Renders a map if coordinates are provided.
+* Supports either `x` and `y` (Lambert72) attributes, or `lon` and `lat` for WGS84-encoded coordinates of a marker.
+
+### < ld-subject >
+
+* Wraps a set of `ld-predicate` nodes.
+* Supports an `about` attribute for specifying a URI that deviates from the body tag's `about` attribute.
+* Example:
+
+        <ld-subject about="http://example.org/#resource">
+            ...
+        </ld-subject>
+
+
+### < ld-predicate >
+
+* Wraps a set of `ld-object` nodes.
+* Supports an `about` attribute for specifying the predicate's URI.
+* Requires a direct child node with a `label` class.
+* Example:
+
+        <ld-subject about="http://example.org/#resource">
+            <ld-predicate about="http://purl.org/dc/terms/identifier">
+                <a class="label" href="http://purl.org/dc/terms/identifier">identifier</a>
+                <ld-object>abc</ld-object>
+                <ld-object>xyz</ld-object>
+            </ld-predicate>
+            
+            <ld-predicate about="...">
+                ...
+            </ld-predicate>
+            ...
+        </ld-subject>
+
+### < ld-object >
+
+* Represents a triple object.
+* Can contain text or markup. For BNodes, add a `bnode` attribute and use nested `ld-predicate` nodes (see example below).
+* Literal object example:
+
+        <ld-object>xyz</ld-object>
+
+* Resource object example:
+
+        <ld-object><a href="...">xyz</a></ld-object>
+
+* BNode object example (note the boolean `bnode` attribute):
+
+        <ld-object bnode>
+            <ld-predicate about="http://www.w3.org/1999/02/22-rdf-syntax-ns#first">
+                <a class="label" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#first">first</a>
+                <ld-object>abc</ld-object>
+            </ld-predicate>
+            <ld-predicate about="http://www.w3.org/1999/02/22-rdf-syntax-ns#rest">
+                <a class="label" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#rest">rest</a>
+                <ld-object>xyz</ld-object>
+            </ld-predicate>
+        </ld-object>
