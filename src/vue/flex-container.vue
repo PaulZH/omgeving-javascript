@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-container" :class="{stretch: align === 'stretch'}">
+    <div class="flex-container" :class="{stretch: align === 'stretch', 'no-gutter': noGutter}">
         <slot></slot>
     </div>
 </template>
@@ -8,6 +8,7 @@
     export default {
         props: {
             'align': String,
+            'noGutter': Boolean
         },
         data() {
             return {
@@ -26,6 +27,11 @@
     flex: 1 1 auto;
     margin-left: -$flex-gutter-width;
     margin-right: -$flex-gutter-width;
+
+    &.no-gutter {
+      margin-left: 0;
+      margin-right: 0;
+    }
 
     &.stretch {
         align-items: stretch;

@@ -3,6 +3,7 @@ export default {
         'dsk': String | Number,
         'tab': String | Number,
         'mob': String | Number,
+        'noGutter': Boolean
     },
     data() {
         return {
@@ -13,7 +14,8 @@ export default {
             const dsk = parseInt(this.dsk) || 100;
             const tab = parseInt(this.tab) || dsk;
             const mob = parseInt(this.mob) || tab;
-            return `dsk-${dsk} tab-${tab} mob-${mob}`;
+            const noGutter = this.noGutter ? 'no-gutter' : '';
+            return `dsk-${dsk} tab-${tab} mob-${mob} ${noGutter}`;
         }
     }
 }

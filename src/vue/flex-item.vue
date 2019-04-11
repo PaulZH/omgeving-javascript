@@ -23,6 +23,10 @@
     flex-grow: 0;
     max-width: percentage($width);
     padding: 0 $flex-gutter-width $flex-gutter-height;
+
+    &.no-gutter {
+        padding: 0 0;
+    }
 }
 
 .flex-item {
