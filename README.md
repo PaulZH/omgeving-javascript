@@ -191,3 +191,9 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
                 <ld-object>xyz</ld-object>
             </ld-predicate>
         </ld-object>
+
+### < ld-collapsible >
+
+* Turns its direct child nodes into one collapsible card.
+* Requires a `title` attribute for specifying the card/toggle title 
+* Supports a boolean `collapsed` attribute for setting the initial state to collapsed. 

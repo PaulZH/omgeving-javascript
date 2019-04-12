@@ -22,6 +22,7 @@ Vue.component('ld-card', () => import(/* webpackChunkName: "ui" */ '../vue/ld-ca
 Vue.component('ld-card-title', () => import(/* webpackChunkName: "ui" */ '../vue/ld-card-title'));
 Vue.component('ld-card-content', () => import(/* webpackChunkName: "ui" */ '../vue/ld-card-content'));
 Vue.component('ld-accordion', () => import(/* webpackChunkName: "ui" */ '../vue/ld-accordion'));
+Vue.component('ld-collapsible', () => import(/* webpackChunkName: "ui" */ '../vue/ld-collapsible'));
 Vue.component('flex-container', () => import(/* webpackChunkName: "ui" */ '../vue/flex-container'));
 Vue.component('flex-item', () => import(/* webpackChunkName: "ui" */ '../vue/flex-item'));
 

@@ -24,4 +24,8 @@
 hr + .ld-subject {
     padding-top: 16px;
 }
+
+.ld-card-content .ld-subject:first-child {
+    padding-top: 16px;
+}
 </style>
