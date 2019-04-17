@@ -24,10 +24,12 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-regenerator-runtime": "^6.5.0",
+    "bn-deployer": "git+ssh://git@gitlab.com/bnowack/deployer.git#1.1.0",
     "copy-webpack-plugin": "^5.0.1",
     "css-loader": "^1.0.1",
     "express": "^4.16.4",
     "file-loader": "^2.0.0",
+    "fs": "^0.0.1-security",
     "fs-extra": "^7.0.1",
     "hbs": "^4.0.3",
     "http-proxy-middleware": "^0.19.1",
@@ -57,6 +59,7 @@
   "scripts": {
     "app": "nodemon dev/app.js",
     "ui-dev": "webpack-dev-server --config dev/webpack.config.dev.js",
-    "ui-prod": "webpack-cli --watch --config dev/webpack.config.prod.js --colors --progress --hide-modules || true"
+    "ui-prod": "webpack-cli --watch --config dev/webpack.config.prod.js --colors --progress --hide-modules || true",
+    "build": "node bin/build.js"
   }
 }
