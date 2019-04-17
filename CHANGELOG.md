@@ -6,10 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-* collapsible section component
-* inbound links component
 * taxonomy component
-* outbound links component
+
+## [1.2.0] - 2019-04-17
+
+### Added
+
+* Components
+  * `ld-collapsible`
+  * `ld-predicate`
+     * Added support for `endpoint` property for dynamically loading objects
+     * Added support for `inbound` property for dynamically loading inverse objects (i.e. subjects)
+
+### Changed
+
+* The demo has been updated.
+* Predicate labels use the lighter green background color again.
 
 ## [1.1.0] - 2019-04-11
 

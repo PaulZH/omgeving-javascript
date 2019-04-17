@@ -151,8 +151,10 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
 ### < ld-predicate >
 
 * Wraps a set of `ld-object` nodes.
-* Supports an `about` attribute for specifying the predicate's URI.
 * Requires a direct child node with a `label` class.
+* Supports an `about` attribute for specifying the predicate's URI.
+* Supports an `endpoint` attribute for dynamically loading objects.
+* Supports an `inbound` attribute (together with `endpoint`) for dynamically loading inverse objects and rendering the widget accordingly.
 * Example:
 
         <ld-subject about="http://example.org/#resource">
@@ -162,7 +164,11 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
                 <ld-object>xyz</ld-object>
             </ld-predicate>
             
-            <ld-predicate about="...">
+            <ld-predicate about="..." endpoint="http...">
+                ...
+            </ld-predicate>
+
+            <ld-predicate about="..." endpoint="http..." inbound>
                 ...
             </ld-predicate>
             ...
@@ -197,4 +203,5 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
 
 * Turns its direct child nodes into one collapsible card.
 * Requires a `title` attribute for specifying the card/toggle title 
-* Supports a boolean `collapsed` attribute for setting the initial state to collapsed. 
+* Supports a boolean `collapsed` attribute for setting the initial state to `collapsed`.
+ 
