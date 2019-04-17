@@ -52,6 +52,8 @@
                 $content.style.minHeight = this.expanded
                     ? this.calcHeight() + 'px'
                     : 0;
+
+                setTimeout(this.checkExpansion, 1000);
             },
 
             calcHeight() {

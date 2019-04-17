@@ -1,13 +1,21 @@
 <template>
-    <flex-container class="ld-subject">
+    <flex-container class="ld-subject" :about="subject">
         <slot></slot>
     </flex-container>
 </template>
 
 <script>
     export default {
+        props: ['about'],
         data() {
             return {
+            }
+        },
+        computed: {
+            subject() {
+                return this.about
+                    || document.querySelector('body').getAttribute('about')
+                    || location.href
             }
         }
     }

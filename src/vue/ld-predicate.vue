@@ -1,10 +1,49 @@
 <template>
-    <flex-item class="ld-predicate-container" :dsk="desktopWidth" mob="100" :no-gutter="isInBode" :class="{ 'is-in-bnode': isInBode }">
+    <flex-item class="ld-predicate-container" :dsk="desktopWidth" mob="100" :no-gutter="isInBode" :class="{ 'is-in-bnode': isInBode, inbound: inbound, loading: loading }">
+        <div class="loader" :class="{ loading: loading }"></div>
         <ld-card class="ld-predicate">
             <flex-container no-gutter>
-                <flex-item class="label-container" dsk="33" mob="100" no-gutter></flex-item>
-                <flex-item class="objects" dsk="66" mob="100" no-gutter>
+                <flex-item :dsk="inbound ? 100 : 33" mob="100" no-gutter>
+                    <span class="predicate-info" :class="{ inbound: inbound }">
+                        <span v-if="rowCount" class="row-count">{{ rowCount.toLocaleString() }}x </span>
+                        <span class="label-container"></span><span v-if="inbound" class="subject-label">: {{ resourceTitle }}</span>
+                    </span>
+                </flex-item>
+                <flex-item class="objects" :dsk="inbound ? 100 : 66" mob="100" no-gutter>
                     <slot></slot>
+                    <span v-if="endpoint && !rows.length"><ld-object>0 treffers</ld-object></span>
+                    <ld-object v-for="row in rows" :key="row.uri.value">
+                        <template v-if="row.uri.type === 'uri'">
+                            <a v-if="row.titel" :href="row.uri.value">{{ row.titel.value }}</a>
+                            <a v-else :href="row.uri.value">{{ row.uri.value }}</a>
+                        </template>
+                        <template v-else>{{ row.uri.value }}</template>
+                    </ld-object>
+                </flex-item>
+            </flex-container>
+            <flex-container v-if="endpoint" class="controls" no-gutter>
+                <flex-item class="sorter" :dsk="25" no-gutter>
+                    <select v-model="sortString">
+                        <template v-for="sortOption in sortOptions">
+                            <option :value="sortOption.value">{{ sortOption.label }}</option>
+                        </template>
+                    </select>
+                </flex-item>
+                <flex-item class="filter" :dsk="25" no-gutter>
+                    <input type="text" v-model="search" placeholder="Filteren ..." autocomplete="off" />
+                </flex-item>
+                <flex-item class="pagination" :dsk="50" no-gutter>
+                    <span class="info" v-if="rowCount">
+                        Pagina {{ page }}/{{ pageCount }}
+                    </span>
+                    <span class="buttons">
+                        <button v-if="prevOffset !== null" @click="offset = prevOffset" :title="prevOffset" :class="{ disabled: offset === prevOffset}">
+                            <v-icon>chevron_left</v-icon>
+                        </button>
+                        <button v-if="nextOffset !== null" @click="offset = nextOffset" :title="nextOffset" :class="{ disabled: offset === nextOffset}">
+                            <v-icon>chevron_right</v-icon>
+                        </button>
+                    </span>
                 </flex-item>
             </flex-container>
         </ld-card>
@@ -12,20 +51,79 @@
 </template>
 
 <script>
+    import sparqlMixin from '../js/sparql-mixin';
     export default {
+        mixins: [sparqlMixin],
+        props: {
+            about: String,
+            inbound: Boolean
+        },
         data() {
             return {
-                isInBode: false
+                isInBode: false,
+                labelMoved: false,
+                offset: 0,
+                pageSize: 8,
+                searchFields: 'uri,titel',
+                sortFields: 'titel',
+                sortField: 'titel',
+                sortString: 'ASC(?titel)'
             }
         },
         computed: {
+            resourceTitle() {
+                return document.querySelector('h1').innerText;
+            },
             desktopWidth() {
                 return this.isInBode ? 100 : 50;
+            },
+            subject() {
+                if (!this.$el || !this.$el.closest) {
+                    return null;
+                }
+
+                return this.$el.closest('.ld-subject[about]').getAttribute('about');
+            },
+            predicate() {
+                return this.about;
+            },
+            sortOptions() {
+                let options = [];
+                this.sortFields.split(/[,\s]+/).forEach((sortField) => {
+                    options.push({
+                        value: `ASC(?${sortField})`,
+                        label: `↑ ${sortField.charAt(0).toUpperCase() + sortField.slice(1)}`
+                    });
+                    options.push({
+                        value: `DESC(?${sortField})`,
+                        label: `↓ ${sortField.charAt(0).toUpperCase() + sortField.slice(1)}`
+                    });
+                });
+
+                return options;
             }
         },
         mounted() {
             this.moveLabel();
             this.checkBnodeContext();
+        },
+        watch: {
+            labelMoved() {
+                if (this.endpoint) {
+                    this.fetchQueryTemplate();
+                    this.fetchCountQueryTemplate();
+                    this.clearObjects();
+                    this.fetchRows();
+                }
+            },
+
+            sortString(value) {
+                let matches = value ? value.match(/(ASC|DESC)\(\?([^)]+)/) : null;
+                if (matches) {
+                    this.sortField = matches[2];
+                    this.sortDirection = matches[1];
+                }
+            }
         },
         methods: {
             moveLabel() {
@@ -42,6 +140,8 @@
                 if ($label) {
                     $labelContainer.appendChild($label);
                 }
+
+                this.labelMoved = true;
             },
 
             checkBnodeContext() {
@@ -52,6 +152,30 @@
                 if (this.$el.closest('.ld-object.bnode')) {
                     this.isInBode = true;
                 }
+            },
+
+            fetchQueryTemplate() {
+                const queryHref = this.inbound ? '/queries/objects-inbound.rq' : '/queries/objects-outbound.rq';
+                this.$http.get(queryHref).then((response) => {
+                    this.queryTemplate = response.body;
+                });
+            },
+
+            fetchCountQueryTemplate() {
+                const queryHref = this.inbound ? '/queries/objects-inbound-count.rq' : '/queries/objects-outbound-count.rq';
+                this.$http.get(queryHref).then((response) => {
+                    this.countQueryTemplate = response.body;
+                });
+            },
+
+            clearObjects() {
+                if (!this.$el || !this.$el.querySelector) {
+                    return setTimeout(this.clearObjects, 100);
+                }
+
+                this.$el.querySelectorAll('.objects > .ld-object').forEach(($object) => {
+                    $object.parentNode.removeChild($object);
+                })
             }
         }
     }
@@ -64,29 +188,39 @@
 
     .ld-predicate {
         background-color: #fff;
-        border-top: 2px solid $green-dark;
+        border-top: 2px solid $green;
 
-        .label-container {
+        .predicate-info {
+            display: block;
+            background-color: $green;
+            color: #fff;
+            text-align: right;
+            line-height: 24px;
+            padding: 4px 12px 6px 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-decoration: none;
+            text-overflow: ellipsis;
 
-            > .label {
-                display: block;
-                background-color: $green-dark;
-                color: $white !important;
-                text-align: right;
-                line-height: 24px;
-                padding: 4px 12px 6px 12px;
+            &.inbound {
+                text-align: left;
+            }
+
+            @media (max-width: $flex-mobile-max-width) {
+                text-align: left;
+            }
+
+            .label {
                 text-transform: capitalize;
-                overflow: hidden;
-                text-decoration: none;
-                text-overflow: ellipsis;
-
+                color: $white !important;
                 &:hover {
                     text-decoration: none !important;
                 }
 
-                @media (max-width: $flex-mobile-max-width) {
-                    text-align: left;
-                }
+            }
+
+            .subject-label {
+                opacity: 0.75;
             }
         }
 
@@ -94,6 +228,89 @@
             padding-bottom: 0 !important;
             overflow: auto;
             max-height: 400px;
+            transition: opacity 0.5s;
+            opacity: 1;
+        }
+
+        .controls {
+            border-top: 1px solid $grey;
+            padding: 8px 0;
+
+            .flex-item {
+                padding: 0 4px !important;
+
+                &:first-child {
+                    padding-left: 8px !important;
+                }
+
+                &:last-child {
+                    padding-right: 8px !important;
+                }
+            }
+
+            .sorter select {
+                display: block;
+                line-height: 24px;
+                padding: 0 4px;
+                font-size: 13px;
+                height: 28px;
+                width: 100%;
+                -webkit-appearance: none;
+                border: 1px solid #ccc;
+                border-radius: 0;
+            }
+
+            .filter input {
+                display: block;
+                line-height: 24px;
+                padding: 0 4px;
+                font-size: 13px;
+                width: 100%;
+                height: 28px;
+            }
+
+            .pagination {
+                text-align: right;
+                display: block;
+
+                .info {
+                    display: inline-block;
+                    line-height: 30px;
+                    padding: 0 4px 0;
+                    vertical-align: top;
+                }
+
+                .buttons {
+                    display: inline-block;
+
+                    button {
+                        cursor: pointer;
+                        background-color: $green;
+                        border: none;
+                        height: 28px;
+                        width: 28px;
+
+                        &.disabled {
+                            cursor: default;
+                            background-color: $grey-light;
+                            &:hover, &:focus, &::-moz-focus-inner {
+                                cursor: default;
+                                background-color: $grey-light;
+                            }
+                        }
+
+                        &:hover, &:focus, &::-moz-focus-inner {
+                          background-color: #42796d;
+                          outline: 0;
+                          border: 0;
+                        }
+
+                        .v-icon {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -102,6 +319,18 @@
 
         &:first-child {
             margin-top: 0;
+        }
+    }
+
+    &.inbound {
+        .label-container {
+            -order: 1;
+        }
+    }
+
+    &.loading {
+        .objects {
+            opacity: 0.1;
         }
     }
 }

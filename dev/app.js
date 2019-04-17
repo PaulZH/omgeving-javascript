@@ -48,8 +48,8 @@ app.get('/id/straling', (req, res) => {
 
 app.get('/id/resource/1', (req, res) => {
     res.render('resource-1', {
-        title: 'Sample Resource',
-        uri: 'http://localhost:3000/id/resource/1#id'
+        title: 'Integraal Milieu Jaarverslag - Dossier - 2011 - EXXONMOBIL CHEMICAL BELGIUM - 01749024006625',
+        uri: 'https://data.imjv.omgeving.vlaanderen.be/id/dossier/2011_01749024006625'
     });
 });
 
