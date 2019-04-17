@@ -217,7 +217,6 @@
 
             button {
                 display: inline-block;
-                margin-right: 7px;
                 text-align: center;
                 vertical-align: middle;
                 cursor: pointer;
