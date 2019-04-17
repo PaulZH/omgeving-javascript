@@ -20,6 +20,7 @@ UI components for Departement Omgeving's Linked Data websites.
 ## Setup and installation on the target server
 
 * Copy the `/dist` directory to `/dist` on the target webserver.
+* Copy the `/queries` directory to `/queries` on the target webserver.
 * There is a footer snippet at `/src/partials/footer.html` which can be used in your layout template.
 * Adjust the favicon link to point at `/dist/img/favicon.ico`.
 * Optional: You can use a `#header` div for arbitrary markup (or some SEO links). It will be auto-replaced with a more optimized header (including links to the department website).  
@@ -32,7 +33,7 @@ UI components for Departement Omgeving's Linked Data websites.
             </ld-view>
         </div>
  
- Inside `<ld-view>`, any of the available components (see below) can now be used. JavaScript and CSS dependencies will be lazy-loaded on demand.
+ Inside `<ld-view>`, any of the available components (see below) can now be used. JavaScript and CSS dependencies will be lazy-loaded on demand from `/dist`.
 
 ## Limitations
 
@@ -117,16 +118,16 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
 ### < ld-data-table >
 
 * Renders a data table with row count info, sorting, and pagination.
-* Requires a `query` attribute with a pointer to a query template (see `src/queries/list-by-type.txt` for the format).
-* Requires a `count-query` attribute with a pointer to a COUNT-query template (see `src/queries/list-by-type-count.txt` for the format).
+* Requires a `query` attribute with a pointer to a query template (see `src/queries/list-by-type.rq` for the format).
+* Requires a `count-query` attribute with a pointer to a COUNT-query template (see `src/queries/list-by-type-count.rq` for the format).
 * Requires a `search-fields` attribute for specifying which variables in the query templates should be used for filtering.
 * Requires a `resource` attribute with a URI that will replace any placeholders in the query templates.
 * Example for a data table that lists resources with a type of `antenne:Straling`:
 
         <ld-data-table
             endpoint="http://fuseki-zendantennes-on-1.vm.cumuli.be:3030/zendantennes/sparql"
-            query="/queries/list-by-type.txt"
-            count-query="/queries/list-by-type-count.txt"
+            query="/queries/list-by-type.rq"
+            count-query="/queries/list-by-type-count.rq"
             search-fields="?uri ?label"
             resource="https://data.zendantennes.omgeving.vlaanderen.be/ns/zendantenne#Straling"
         ></ld-data-table>
