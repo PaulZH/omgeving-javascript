@@ -39,7 +39,7 @@ DirectoryIndex views/index.html
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule ^(zendantennes/home)$ views/zendantennes-home.html [QSA,NC,L]
 	RewriteRule ^(id/straling)$ views/resource-list-straling.html [QSA,NC,L]
-	RewriteRule ^(id/resource/1)$ views/resource-1.html [QSA,NC,L]
+	RewriteRule ^(id/resource/1)$ views/resource.html [QSA,NC,L]
 
     # rewrite favicon
 	RewriteCond %{REQUEST_FILENAME} !-f
