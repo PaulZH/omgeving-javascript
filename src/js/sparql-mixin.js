@@ -14,6 +14,7 @@ export default {
             rows: [],
             rowCount: null,
             pageSize: 10,
+            uniqueField: null,
             sortField: null,
             sortDirection: 'ASC',
             queryTemplate: '',
@@ -130,7 +131,18 @@ export default {
                         label: field
                     }
                 });
-                this.rows = response.rows;
+                this.rows = response.rows.filter((row, index, rows) => {
+                    // remove duplicates via `uniqueField`, if set
+                    if (this.uniqueField && index && rows[index - 1][this.uniqueField]) {
+                        let prevValue = rows[index - 1][this.uniqueField].value;
+                        let thisValue = rows[index][this.uniqueField].value;
+                        if (prevValue === thisValue) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                });
                 this.loadedOffset = this.offset;
                 setTimeout(() => this.loading--, 250);
             })

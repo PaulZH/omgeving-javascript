@@ -67,7 +67,8 @@
                 searchFields: 'uri,titel',
                 sortFields: 'titel',
                 sortField: 'titel',
-                sortString: 'ASC(?titel)'
+                sortString: 'ASC(?titel)',
+                uniqueField: 'uri',
             }
         },
         computed: {
