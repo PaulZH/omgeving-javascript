@@ -73,6 +73,10 @@
         },
         computed: {
             resourceTitle() {
+                if (!document.querySelector || !document.querySelector('h1')) {
+                    return '';
+                }
+
                 return document.querySelector('h1').innerText;
             },
             desktopWidth() {
