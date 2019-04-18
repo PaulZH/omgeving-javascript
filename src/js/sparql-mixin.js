@@ -1,4 +1,6 @@
+import queryCacheMixin from '../js/queryCacheMixin';
 export default {
+    mixins: [queryCacheMixin],
     props: {
         endpoint: String,
         graph: String,
@@ -7,7 +9,6 @@ export default {
         return {
             loading: 0,
             requests: {},
-            queryCache: {},
             offset: null,
             loadedOffset: null,
             rows: [],
@@ -147,8 +148,8 @@ export default {
         },
 
         runQuery(query, callback) {
-            if (this.queryCache[query]) {
-                return callback(this.queryCache[query]);
+            if (this.getCachedQueryResults(query)) {
+                return callback(this.getCachedQueryResults(query));
             }
 
             const requestId = query;
@@ -173,12 +174,12 @@ export default {
                 }
             )
             .then(response => {
-                this.requests[requestId] = null;
-                this.queryCache[query] = {
+                delete this.requests[requestId];
+                this.setCachedQueryResults(query, {
                     vars: response.body.head.vars,
                     rows: response.body.results.bindings
-                };
-                callback(this.queryCache[query]);
+                });
+                callback(this.getCachedQueryResults(query));
             }, error => {
                 //console.log('Error, possibly just aborted', error);
                 callback({ vars: [], rows: [] });
