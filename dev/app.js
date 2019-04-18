@@ -6,12 +6,13 @@ const port = 3000;
 // init app
 const app = express();
 
-// proxy websocket requests to webpack dev server
-app.use('/sockjs-node', proxy({target: 'http://localhost:3001/', ws: true}));
-
-// proxy bundle requests to webpack dev server
-app.use('/dist', proxy({target: 'http://localhost:3001/', ws: true}));
-//app.use('/dist', express.static(__dirname + '/../dist')); // prod
+// proxy bundle/websocket requests to webpack dev server
+if (process.env.mode && process.env.mode === 'dev') {
+    app.use('/sockjs-node', proxy({target: 'http://localhost:3001/', ws: true}));
+    app.use('/dist', proxy({target: 'http://localhost:3001/', ws: true}));
+} else {
+    app.use('/dist', express.static(__dirname + '/../dist')); // prod
+}
 
 // configure handlebars
 app.set('views', __dirname + '/../src/views');

@@ -57,8 +57,9 @@
     "yasgui-yasqe": "^2.11.22"
   },
   "scripts": {
-    "app": "nodemon dev/app.js",
+    "app-dev": "nodemon dev/app-dev.js",
     "ui-dev": "webpack-dev-server --config dev/webpack.config.dev.js",
+    "app-prod": "nodemon dev/app.js",
     "ui-prod": "webpack-cli --watch --config dev/webpack.config.prod.js --colors --progress --hide-modules || true",
     "build": "node bin/build.js"
   }

@@ -5,13 +5,16 @@ UI components for Departement Omgeving's Linked Data websites.
 
 ## Development
 
-* run `yarn install` (or `npm install`) to install/update dependencies
-* run `npm run app` to activate the development (express) server
-* run `npm run ui-dev` to activate the webpack bundler/watcher
+* Run `yarn install` (or `npm install`) to install/update dependencies.
+* Run `npm run app-dev` to activate the development server (with webpack websocket support).
+* Run `npm run ui-dev` to activate the webpack bundler/watcher.
 
 ## Release creation
 
-* run `npm run ui-prod` to build a production-optimized distribution in `/dist`
+* Increase the `version` in `package.json`
+* Run `npm run app-prod` to start the build-compatible app server.
+* Run `npm run ui-prod` to build a production-optimized distribution in `/dist`.
+* Run `npm run build` to update the `demo` directory.
 
 ## Static demo app
 
