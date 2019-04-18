@@ -83,7 +83,11 @@
                 return this.isInBode ? 100 : 50;
             },
             subject() {
-                if (!this.$el || !this.$el.closest) {
+                if (!this.$el
+                    || !this.$el.closest
+                    || !this.$el.closest('.ld-subject[about]')
+                    || !this.$el.closest('.ld-subject[about]').getAttribute('about')
+                ) {
                     return null;
                 }
 
