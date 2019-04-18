@@ -12,7 +12,7 @@
                 <flex-item class="objects" :dsk="inbound ? 100 : 66" mob="100" no-gutter>
                     <slot></slot>
                     <span v-if="endpoint && !rows.length"><ld-object>0 treffers</ld-object></span>
-                    <ld-object v-for="row in rows" :key="row.uri.value">
+                    <ld-object v-for="(row, index) in rows" :key="offset + index">
                         <template v-if="row.uri.type === 'uri'">
                             <a v-if="row.titel" :href="row.uri.value">{{ row.titel.value }}</a>
                             <a v-else :href="row.uri.value">{{ row.uri.value }}</a>
