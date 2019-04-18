@@ -24,8 +24,8 @@ UI components for Departement Omgeving's Linked Data websites.
 
 * Copy the `/dist` directory to `/dist` on the target webserver.
 * Copy the `/queries` directory to `/queries` on the target webserver.
-* There is a footer snippet at `/src/partials/footer.html` which can be used in your layout template.
-* Adjust the favicon link to point at `/dist/img/favicon.ico`.
+* There is a footer snippet at `/src/partials/footer.html` which can be used in your layout template (see `src/views/layout.hbs` for an example base layout).
+* Adjust any favicon link in your layout template to point at `/dist/img/favicon.ico`.
 * Optional: You can use a `#header` div for arbitrary markup (or some SEO links). It will be auto-replaced with a more optimized header (including links to the department website).  
 * There is an initialization snippet at `src/partials/init.html` which should be included in your layout template as very last section in the `body` tag.
 * Wrap the markup in `#content` with an `ld-view` tag:
@@ -47,16 +47,16 @@ UI components for Departement Omgeving's Linked Data websites.
 
 See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage examples.
 
-### < ld-view >
+### `<ld-view>`
 
 * Injects a breadcrumbs navigation and a department header.
 
-### < flex-container >
+### `<flex-container>`
 
 * Creates a flex container for horizontally positioned sub-items.
 * Add `stretch` class to make all children expand to the same height. (Use this only in nested containers, not on a top-level `flex-container`, or it may expand to the page height).
 
-### < flex-item >
+### `<flex-item>`
 
 * To be used as direct child nodes within a `flex-container`.
 * Supports `dsk` (desktop) `tab` (tablet), and `mob` (mobile) attributes for specifying respective item widths.
@@ -65,28 +65,28 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
   will have a width of 25% on desktops, 50% on tablets, and 100% on mobile screens.
   * If a value is not specified, then it is inherited from the higher context (e.g. `mob` inherits from `tab`), with `dsk` defaulting to 100%.
 
-### < ld-card >
+### `<ld-card>`
 
 * Renders a basic card.
 * Supports a `dark` class for a card with a dark background (and white text).
 
-### < ld-card-title >
+### `<ld-card-title>`
 
 * Renders a card title
 * Supports an optional `img` attribute for injecting a background image into the title node. 
 * Supports a `dark` class for a card with a dark background (and white text).
 
-### < ld-card-content >
+### `<ld-card-content>`
 
 * Adds a padding around its direct child nodes.
 
-### < ld-accordion >
+### `<ld-accordion>`
 
 * Turns its direct child nodes into collapsible sections.
 * The child nodes should have two sibling nodes: One node with a `pane-toggle` class, and one with a `pane` class.
   * The former will be used to toggle the latter.
   
-### < ld-lookup-form >
+### `<ld-lookup-form>`
 
 * Renders a linked data lookup form.
 * Requires a `samples` attribute with a pointer to a samples text file (see `src/samples/imjv-lookup.txt` for the format).
@@ -96,7 +96,7 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
             Opzoeken op basis van identifier
         </ld-lookup-form>
 
-### < ld-sparql-form >
+### `<ld-sparql-form>`
 
 * Renders a linked data SPARQL form.
 * Requires a `samples` attribute with a pointer to a samples text file (see `src/samples/imjv-sparql.txt` for the format).
@@ -107,7 +107,7 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
             Opzoeken met een SPARQL zoekopdracht
         </ld-sparql-form>
 
-### < ld-search-form >
+### `<ld-search-form>`
 
 * Renders a keyword search form.
 * Requires a `samples` attribute with a pointer to a samples text file (see `src/samples/imjv-search.txt` for the format).
@@ -118,7 +118,7 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
             Opzoeken met een sleutelwoord
         </ld-search-form>
 
-### < ld-data-table >
+### `<ld-data-table>`
 
 * Renders a data table with row count info, sorting, and pagination.
 * Requires a `query` attribute with a pointer to a query template (see `src/queries/list-by-type.rq` for the format).
@@ -135,12 +135,12 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
             resource="https://data.zendantennes.omgeving.vlaanderen.be/ns/zendantenne#Straling"
         ></ld-data-table>
 
-### < ld-map >
+### `<ld-map>`
 
 * Renders a map if coordinates are provided.
 * Supports either `x` and `y` (Lambert72) attributes, or `lon` and `lat` for WGS84-encoded coordinates of a marker.
 
-### < ld-subject >
+### `<ld-subject>`
 
 * Wraps a set of `ld-predicate` nodes.
 * Supports an `about` attribute for specifying a URI that deviates from the body tag's `about` attribute.
@@ -151,7 +151,7 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
         </ld-subject>
 
 
-### < ld-predicate >
+### `<ld-predicate>`
 
 * Wraps a set of `ld-object` nodes.
 * Requires a direct child node with a `label` class.
@@ -177,7 +177,7 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
             ...
         </ld-subject>
 
-### < ld-object >
+### `<ld-object>`
 
 * Represents a triple object.
 * Can contain text or markup. For BNodes, add a `bnode` attribute and use nested `ld-predicate` nodes (see example below).
@@ -202,7 +202,7 @@ See `src/views/department.hbs` and `src/views/zendantennes-home.hbs` for usage e
             </ld-predicate>
         </ld-object>
 
-### < ld-collapsible >
+### `<ld-collapsible>`
 
 * Turns its direct child nodes into one collapsible card.
 * Requires a `title` attribute for specifying the card/toggle title 
