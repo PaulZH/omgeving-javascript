@@ -13,10 +13,7 @@
                     <slot></slot>
                     <span v-if="endpoint && !rows.length"><ld-object>0 treffers</ld-object></span>
                     <ld-object v-for="(row, index) in rows" :key="offset + index">
-                        <template v-if="row.uri.type === 'uri'">
-                            <a v-if="row.titel" :href="row.uri.value">{{ row.titel.value }}</a>
-                            <a v-else :href="row.uri.value">{{ row.uri.value }}</a>
-                        </template>
+                        <a v-if="row.uri.type === 'uri'" :href="row.uri.value">{{ row.titel ? row.titel.value : row.uri.value }}</a>
                         <template v-else>{{ row.uri.value }}</template>
                     </ld-object>
                 </flex-item>
