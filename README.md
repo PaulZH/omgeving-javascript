@@ -36,12 +36,15 @@ UI components for Departement Omgeving's Linked Data websites.
             </ld-view>
         </div>
  
- Inside `<ld-view>`, any of the available components (see below) can now be used. JavaScript and CSS dependencies will be lazy-loaded on demand from `/dist`.
+    Inside `<ld-view>`, any of the available components (see below) can now be used. JavaScript and CSS dependencies will be lazy-loaded on demand from `/dist`.
+* Add an `about` attribute with the current subject's URI to the `body` tag.
+  Alternatively, add `about` attributes to [`<ld-subject>`](#ld-subject) tags.
 
 ## Limitations
 
 * At the moment, the components should not be mixed with the [jQuery-based Linked Data widgets](https://gitlab.com/bnowack/lnedata-ui). 
 * The base URL of the the target site should be `/` (for running the code in a sub-directory, another build configuration would be needed).
+* Link hrefs are not rewritten to the current site's base URL. During testing, you need to adjust URLs manually when clicking on not-yet-published links.
 
 ## Components
 
@@ -53,8 +56,8 @@ Available components:
 * [flex-item](#flex-item)
 * [ld-accordion](#ld-accordion)
 * [ld-card](#ld-card)
-* [ld-card-title](#ld-card-title)
 * [ld-card-content](#ld-card-content)
+* [ld-card-title](#ld-card-title)
 * [ld-collapsible](#ld-collapsible)
 * [ld-data-table](#ld-data-table)
 * [ld-lookup-form](#ld-lookup-form)
@@ -64,48 +67,116 @@ Available components:
 * [ld-search-form](#ld-search-form)
 * [ld-sparql-form](#ld-sparql-form)
 * [ld-subject](#ld-subject)
+* [ld-taxonomy](#ld-taxonomy)
 * [ld-view](#ld-view)
  
 ### `<flex-container>`
 
 * Creates a flex container for horizontally positioned sub-items.
 * Add `stretch` class to make all children expand to the same height. (Use this only in nested containers, not on a top-level `flex-container`, or it may expand to the page height).
+* Example:
+
+        <flex-container>
+            <flex-item dsk="66" mob="100">
+                66% wide on desktops, 100% on mobiles
+            </flex-item>
+            <flex-item dsk="33" mob="100">
+                33% wide on desktops, 100% on mobiles
+            </flex-item>
+        </flex-container>
+
 
 ### `<flex-item>`
 
 * To be used as direct child nodes within a `flex-container`.
 * Supports `dsk` (desktop) `tab` (tablet), and `mob` (mobile) attributes for specifying respective item widths.
   * Supported values are `25`, `33`, `50`, `66`, `75`, and `100`.
-  * For example: `<flex-item dsk="25" tab="50", mob="100">...</flex-item>`
-  will have a width of 25% on desktops, 50% on tablets, and 100% on mobile screens.
-  * If a value is not specified, then it is inherited from the higher context (e.g. `mob` inherits from `tab`), with `dsk` defaulting to 100%.
+  * If a value is not specified, it is inherited from the higher context (e.g. `mob` inherits from `tab`), with `dsk` defaulting to 100%.
+* Example:
+
+        <flex-item dsk="25" tab="50", mob="100">
+            25% wide on desktops, 50% on tablets, 100% on mobiles
+        </flex-item>
+
 
 ### `<ld-accordion>`
 
 * Turns its direct child nodes into collapsible sections.
 * The child nodes should have two sibling nodes: One node with a `pane-toggle` class, and one with a `pane` class.
   * The former will be used to toggle the latter.
+  * API form components provide these classes internally, so that they can be used directly as child nodes.
+  * Example:
+
+        <ld-accordion>
+            <ld-lookup-form
+                    samples="/samples/imjv-lookup.txt">
+                Opzoeken op basis van identifier
+            </ld-lookup-form>
+
+            <ld-sparql-form
+                    endpoint="https://id.milieuinfo.be/imjv/sparql"
+                    samples="/samples/imjv-sparql.txt">
+                Opzoeken met een SPARQL zoekopdracht
+            </ld-sparql-form>
+
+            <ld-search-form
+                    endpoint="https://id.milieuinfo.be/imjv/keywordsearch"
+                    samples="/samples/imjv-search.txt">
+                Opzoeken met een sleutelwoord
+            </ld-search-form>
+        </ld-accordion>
+
 
 ### `<ld-card>`
 
 * Renders a basic card.
 * Supports a `dark` class for a card with a dark background (and white text).
+* Example:
+
+        <ld-card>
+            <ld-card-title class="dark">
+                <h2>Welkom op Zendantennes</h2>
+            </ld-card-title>
+            <img src="/dist/img/hero-light.png" />
+            <ld-card-content>
+                <p class="intro">
+                    This is an introduction paragraph.<br/>
+                    It gets printed in a larger font.
+                </p>
+                <p>
+                    Normal text
+                </p>
+                <h3>Small hading</h3>
+                <ul>
+                    <li>list item 1</li>
+                    <li>list item 2</li>
+                </ul>
+            </ld-card-content>
+        </ld-card>
+
 
 ### `<ld-card-title>`
 
 * Renders a card title
 * Supports an optional `img` attribute for injecting a background image into the title node. 
 * Supports a `dark` class for a card with a dark background (and white text).
+* Example: see [`<ld-card>`](#ld-card) 
 
 ### `<ld-card-content>`
 
 * Adds a padding around its direct child nodes.
+* Example: see [`<ld-card>`](#ld-card) 
 
 ### `<ld-collapsible>`
 
 * Turns its direct child nodes into one collapsible card.
 * Requires a `title` attribute for specifying the card/toggle title 
 * Supports a boolean `collapsed` attribute for setting the initial state to `collapsed`.
+* Example:
+
+        <ld-collapsible title="Collapsed section" collapsed>
+            <p>some text</p>
+        </ld-collapsible>
 
 ### `<ld-data-table>`
 
@@ -138,6 +209,11 @@ Available components:
 
 * Renders a map if coordinates are provided.
 * Supports either `x` and `y` (Lambert72) attributes, or `lon` and `lat` for WGS84-encoded coordinates of a marker.
+    * When prefixed with a colon, the values get directly interpreted as numbers (the component will auto-convert string values to floats if needed, though). 
+* Example: 
+
+        <ld-map :x="147308.80" :y="214146.48"></ld-map>
+
 
 ### `<ld-object>`
 
@@ -171,6 +247,7 @@ Available components:
 * Supports an `about` attribute for specifying the predicate's URI.
 * Supports an `endpoint` attribute for dynamically loading objects.
 * Supports an `inbound` attribute (together with `endpoint`) for dynamically loading inverse objects and rendering the widget accordingly.
+* Auto-replaces objects with a taxonomy for selected SKOS predicates (see [`<ld-taxonomy>`](#ld-taxonomy)).
 * Example:
 
         <ld-subject about="http://example.org/#resource">
@@ -222,7 +299,32 @@ Available components:
             ...
         </ld-subject>
 
+### `<ld-taxonomy>`
+
+* Fetches and injects a SKOS-based tree-view.
+* This is a sub-component that gets activated automatically by [`<ld-predicate>`](#ld-predicate) when
+  * an `endpoint` property is set, and
+  * the predicate is skos:(hasTopConcept|topConceptOf|inScheme|broader|narrower). 
+ 
 ### `<ld-view>`
 
-* Injects a breadcrumbs navigation and a department header.
- 
+* Injects a breadcrumbs navigation and a department header, and enables child components.
+* Example:
+
+        ...
+        <body about="http://...">
+            <div id="header">
+                ...
+            </div>
+            <div id="content">
+                <ld-view>
+                    <h1>Departement Omgeving - Linked Data</h1>
+                    <flex-container>
+                        ...
+                    </flex-container>
+                </ld-view>
+            </div>
+            <!-- footer -->
+            ...
+            <!-- init-snippet -->
+        </body>
