@@ -40,6 +40,8 @@ DirectoryIndex views/index.html
 	RewriteRule ^(zendantennes/home)$ views/zendantennes-home.html [QSA,NC,L]
 	RewriteRule ^(id/straling)$ views/resource-list-straling.html [QSA,NC,L]
 	RewriteRule ^(id/resource/1)$ views/resource.html [QSA,NC,L]
+	RewriteRule ^(query-results)$ views/query-results.html [QSA,NC,L]
+	RewriteRule ^(ontology)$ views/ontology.html [QSA,NC,L]
 
     # rewrite favicon
 	RewriteCond %{REQUEST_FILENAME} !-f

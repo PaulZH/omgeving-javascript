@@ -7,7 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 * page size selector in `ld-data-table`
-* sparql results styling
+
+## [1.4.0] - 2019-04-20
+
+### Added
+
+* CSS rules for query result tables.
+* `ld-predicate`: Support for `wide` attribute.
+* Query results sample view.
+* Ontology sample view.
+
+### Changed
+
+* Updated demo files.
 
 ## [1.3.0] - 2019-04-20
 
