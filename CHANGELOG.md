@@ -6,8 +6,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-* taxonomy component
 * page size selector in `ld-data-table`
+* sparql results styling
+
+## [1.3.0] - 2019-04-20
+
+### Fixed
+
+* Subject does not always get detected.
+
+### Added
+
+* NPM script shortcut for running the app in dev and build mode.
+* Removal of URI duplicates after retrieving query results.
+* `ld-taxonomy` component (auto-invoked by `ld-predicate` when endpoint is set and predicate is from SKOS)
+* `ld-collapsible` listens for content changes to sync its height faster.
+* Taxonomy examples in resource sample page.
+
+### Changed
+
+* Query cache is now a singleton and works across all components. 
+* Improved README.
+* Update demo files.
 
 ## [1.2.0] - 2019-04-17
 
