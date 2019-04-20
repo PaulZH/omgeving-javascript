@@ -56,7 +56,8 @@
         mixins: [sparqlMixin],
         props: {
             about: String,
-            inbound: Boolean
+            inbound: Boolean,
+            wide: Boolean
         },
         data() {
             return {
@@ -88,7 +89,7 @@
                 return document.querySelector('h1').innerText;
             },
             desktopWidth() {
-                return this.isInBode ? 100 : 50;
+                return (this.isInBode || this.wide) ? 100 : 50;
             },
             predicate() {
                 return this.about;

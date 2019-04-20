@@ -247,6 +247,7 @@ Available components:
 * Supports an `about` attribute for specifying the predicate's URI.
 * Supports an `endpoint` attribute for dynamically loading objects.
 * Supports an `inbound` attribute (together with `endpoint`) for dynamically loading inverse objects and rendering the widget accordingly.
+* Supports a boolean `wide` attribute for a 100%-wide predicate (instead of the default 50%), e.g. for ontology pages.
 * Auto-replaces objects with a taxonomy for selected SKOS predicates (see [`<ld-taxonomy>`](#ld-taxonomy)).
 * Example:
 

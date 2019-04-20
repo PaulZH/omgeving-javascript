@@ -60,4 +60,10 @@ app.get('/query-results', (req, res) => {
     });
 });
 
+app.get('/ontology', (req, res) => {
+    res.render('ontology', {
+        title: 'Ontology'
+    });
+});
+
 app.listen(port, () => console.log(`Dev server listening on port ${port}!`));

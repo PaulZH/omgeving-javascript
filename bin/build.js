@@ -16,4 +16,5 @@ builder
     .copy('http://localhost:3000/id/straling', 'demo/views/resource-list-straling.html')
     .copy('http://localhost:3000/id/resource/1', 'demo/views/resource.html')
     .copy('http://localhost:3000/query-results', 'demo/views/query-results.html')
+    .copy('http://localhost:3000/ontology', 'demo/views/ontology.html')
 ;
