@@ -22,7 +22,8 @@
         },
         data() {
             return {
-                expanded: false
+                expanded: false,
+                checkTimeout: null
             }
         },
         mounted() {
@@ -43,6 +44,8 @@
                     return setTimeout(this.checkExpansion, 100);
                 }
 
+                clearTimeout(this.checkTimeout);
+
                 // prevent page from shrinking and scrolling up during toggling
                 let $canvas = document.querySelector('#content');
                 $canvas.style.minHeight = $canvas.getBoundingClientRect().height + 'px';
@@ -53,7 +56,7 @@
                     ? this.calcHeight() + 'px'
                     : 0;
 
-                setTimeout(this.checkExpansion, 1000);
+                this.checkTimeout = setTimeout(this.checkExpansion, 1000);
             },
 
             calcHeight() {
