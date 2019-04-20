@@ -60,6 +60,7 @@
         },
         data() {
             return {
+                subject: null,
                 isInBode: false,
                 labelMoved: false,
                 offset: 0,
@@ -82,17 +83,6 @@
             desktopWidth() {
                 return this.isInBode ? 100 : 50;
             },
-            subject() {
-                if (!this.$el
-                    || !this.$el.closest
-                    || !this.$el.closest('.ld-subject[about]')
-                    || !this.$el.closest('.ld-subject[about]').getAttribute('about')
-                ) {
-                    return null;
-                }
-
-                return this.$el.closest('.ld-subject[about]').getAttribute('about');
-            },
             predicate() {
                 return this.about;
             },
@@ -113,6 +103,7 @@
             }
         },
         mounted() {
+            this.extractSubject();
             this.moveLabel();
             this.checkBnodeContext();
         },
@@ -135,6 +126,13 @@
             }
         },
         methods: {
+            extractSubject() {
+                if (!this.$el || !this.$el.closest || !this.$el.closest('.ld-subject')) {
+                    return setTimeout(this.extractSubject, 250);
+                }
+
+                this.subject = this.$el.closest('.ld-subject[about]').getAttribute('about');
+            },
             moveLabel() {
                 if (!this.$el || !this.$el.querySelector) {
                     return setTimeout(this.moveLabel, 100);
