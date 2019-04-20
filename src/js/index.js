@@ -29,6 +29,7 @@ Vue.component('flex-item', () => import(/* webpackChunkName: "ui" */ '../vue/fle
 Vue.component('ld-subject', () => import(/* webpackChunkName: "data" */ '../vue/ld-subject'));
 Vue.component('ld-predicate', () => import(/* webpackChunkName: "data" */ '../vue/ld-predicate'));
 Vue.component('ld-object', () => import(/* webpackChunkName: "data" */ '../vue/ld-object'));
+Vue.component('ld-taxonomy', () => import(/* webpackChunkName: "data" */ '../vue/ld-taxonomy'));
 
 Vue.component('ld-lookup-form', () => import(/* webpackChunkName: "api-explorer" */ '../vue/ld-lookup-form'));
 Vue.component('ld-sparql-form', () => import(/* webpackChunkName: "api-explorer" */ '../vue/ld-sparql-form'));

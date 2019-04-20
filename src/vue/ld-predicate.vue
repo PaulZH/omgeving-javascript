@@ -2,6 +2,7 @@
     <flex-item class="ld-predicate-container" :dsk="desktopWidth" mob="100" :no-gutter="isInBode" :class="{ 'is-in-bnode': isInBode, inbound: inbound, loading: loading }">
         <div class="loader" :class="{ loading: loading }"></div>
         <ld-card class="ld-predicate">
+
             <flex-container no-gutter>
                 <flex-item :dsk="inbound ? 100 : 33" mob="100" no-gutter>
                     <span class="predicate-info" :class="{ inbound: inbound }">
@@ -11,14 +12,16 @@
                 </flex-item>
                 <flex-item class="objects" :dsk="inbound ? 100 : 66" mob="100" no-gutter>
                     <slot></slot>
-                    <span v-if="endpoint && !rows.length"><ld-object>0 treffers</ld-object></span>
-                    <ld-object v-for="(row, index) in rows" :key="offset + index">
+                    <ld-taxonomy v-if="endpoint && isTaxonomy" :endpoint="endpoint" :graph="graph" :subject="subject" :predicate="predicate"></ld-taxonomy>
+                    <span v-else-if="endpoint && !rows.length"><ld-object>0 treffers</ld-object></span>
+                    <ld-object v-else v-for="(row, index) in rows" :key="offset + index">
                         <a v-if="row.uri.type === 'uri'" :href="row.uri.value">{{ row.titel ? row.titel.value : row.uri.value }}</a>
                         <template v-else>{{ row.uri.value }}</template>
                     </ld-object>
                 </flex-item>
             </flex-container>
-            <flex-container v-if="endpoint" class="controls" no-gutter>
+
+            <flex-container v-if="endpoint && !isTaxonomy" class="controls" no-gutter>
                 <flex-item class="sorter" :dsk="25" no-gutter>
                     <select v-model="sortString">
                         <template v-for="sortOption in sortOptions">
@@ -67,6 +70,13 @@
                 sortField: 'titel',
                 sortString: 'ASC(?titel)',
                 uniqueField: 'uri',
+                taxonomyProps: [
+                    'http://www.w3.org/2004/02/skos/core#hasTopConcept',
+                    'http://www.w3.org/2004/02/skos/core#topConceptOf',
+                    'http://www.w3.org/2004/02/skos/core#inScheme',
+                    'http://www.w3.org/2004/02/skos/core#broader',
+                    'http://www.w3.org/2004/02/skos/core#narrower'
+                ]
             }
         },
         computed: {
@@ -97,6 +107,9 @@
                 });
 
                 return options;
+            },
+            isTaxonomy() {
+                return this.predicate && !this.inbound && (this.taxonomyProps.indexOf(this.predicate) !== -1);
             }
         },
         mounted() {
@@ -107,10 +120,12 @@
         watch: {
             labelMoved() {
                 if (this.endpoint) {
-                    this.fetchQueryTemplate();
-                    this.fetchCountQueryTemplate();
                     this.clearObjects();
-                    this.fetchRows();
+                    if (!this.isTaxonomy) {
+                        this.fetchQueryTemplate();
+                        this.fetchCountQueryTemplate();
+                        this.fetchRows();
+                    }
                 }
             },
 
