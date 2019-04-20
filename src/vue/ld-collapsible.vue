@@ -28,6 +28,11 @@
         },
         mounted() {
             this.expanded = !this.collapsed;
+            // allow child components to emit 'contentChanged' events to this component
+            this.$el.component = this;
+            this.$on('contentChanged', (event) => {
+                this.checkExpansion()
+            });
         },
         watch: {
             expanded(value) {
