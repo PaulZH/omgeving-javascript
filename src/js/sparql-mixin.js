@@ -131,21 +131,25 @@ export default {
                         label: field
                     }
                 });
-                this.rows = response.rows.filter((row, index, rows) => {
-                    // remove duplicates via `uniqueField`, if set
-                    if (this.uniqueField && index && rows[index - 1][this.uniqueField]) {
-                        let prevValue = rows[index - 1][this.uniqueField].value;
-                        let thisValue = rows[index][this.uniqueField].value;
-                        if (prevValue === thisValue) {
-                            return false;
-                        }
-                    }
-
-                    return true;
-                });
+                this.rows = response.rows.filter(this.removeDuplicates);
                 this.loadedOffset = this.offset;
                 setTimeout(() => this.loading--, 250);
             })
+        },
+
+        /**
+         * Removes duplicates via `uniqueField`, if set
+         */
+        removeDuplicates(row, index, rows) {
+            if (this.uniqueField && index && rows[index - 1][this.uniqueField]) {
+                let prevValue = rows[index - 1][this.uniqueField].value;
+                let thisValue = rows[index][this.uniqueField].value;
+                if (prevValue === thisValue) {
+                    return false;
+                }
+            }
+
+            return true;
         },
 
         countRows() {
