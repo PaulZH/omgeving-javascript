@@ -54,4 +54,10 @@ app.get('/id/resource/1', (req, res) => {
     });
 });
 
+app.get('/query-results', (req, res) => {
+    res.render('query-results', {
+        title: 'SPARQL zoekopdracht resultaten'
+    });
+});
+
 app.listen(port, () => console.log(`Dev server listening on port ${port}!`));
