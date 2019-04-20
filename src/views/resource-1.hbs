@@ -131,6 +131,84 @@
 
 <hr/>
 
+<h2>Taxonomy examples</h2>
+
+<ld-card>
+    <ld-card-content>
+        The following (outbound) SKOS predicates will be enhanced with taxonomy views:
+        <ul>
+            <li>hasTopConcept</li>
+            <li>topConceptOf</li>
+            <li>inScheme</li>
+            <li>broader</li>
+            <li>narrower</li>
+        </ul>
+    </ld-card-content>
+</ld-card>
+
+<ld-collapsible title="Archiefconcepten (concept scheme)" collapsed>
+    <ld-subject about="https://data.imjv.omgeving.vlaanderen.be/id/conceptscheme/archief">
+        <ld-predicate about="http://www.w3.org/2004/02/skos/core#hasTopConcept" endpoint="http://imjv-fuseki-on-1.vm.cumuli.be:3030/imjv/query">
+           <a class="label" href="http://www.w3.org/2004/02/skos/core#hasTopConcept">hasTopConcept</a>
+           <ld-object>...</ld-object>
+        </ld-predicate>
+    </ld-subject>
+</ld-collapsible>
+
+<ld-collapsible title="Dossier (top concept)" collapsed>
+    <ld-subject about="https://data.imjv.omgeving.vlaanderen.be/id/concept/dossier">
+        <ld-predicate about="http://www.w3.org/2004/02/skos/core#inScheme" endpoint="http://imjv-fuseki-on-1.vm.cumuli.be:3030/imjv/query">
+           <a class="label" href="http://www.w3.org/2004/02/skos/core#inScheme">inScheme</a>
+           <ld-object>...</ld-object>
+        </ld-predicate>
+
+        <ld-predicate about="http://www.w3.org/2004/02/skos/core#topConceptOf" endpoint="http://imjv-fuseki-on-1.vm.cumuli.be:3030/imjv/query">
+           <a class="label" href="http://www.w3.org/2004/02/skos/core#topConceptOf">topConceptOf</a>
+           <ld-object>...</ld-object>
+        </ld-predicate>
+
+        <ld-predicate about="http://www.w3.org/2004/02/skos/core#narrower" endpoint="http://imjv-fuseki-on-1.vm.cumuli.be:3030/imjv/query">
+           <a class="label" href="http://www.w3.org/2004/02/skos/core#narrower">narrower</a>
+           <ld-object>...</ld-object>
+        </ld-predicate>
+    </ld-subject>
+</ld-collapsible>
+
+<ld-collapsible title="Aangifte energie (concept)" collapsed>
+    <ld-subject about="https://data.imjv.omgeving.vlaanderen.be/id/concept/aangifte_energie">
+        <ld-predicate about="http://www.w3.org/2004/02/skos/core#inScheme" endpoint="http://imjv-fuseki-on-1.vm.cumuli.be:3030/imjv/query">
+           <a class="label" href="http://www.w3.org/2004/02/skos/core#inScheme">inScheme</a>
+           <ld-object>...</ld-object>
+        </ld-predicate>
+
+        <ld-predicate about="http://www.w3.org/2004/02/skos/core#broader" endpoint="http://imjv-fuseki-on-1.vm.cumuli.be:3030/imjv/query">
+           <a class="label" href="http://www.w3.org/2004/02/skos/core#broader">broader</a>
+           <ld-object>...</ld-object>
+        </ld-predicate>
+
+        <ld-predicate about="http://www.w3.org/2004/02/skos/core#narrower" endpoint="http://imjv-fuseki-on-1.vm.cumuli.be:3030/imjv/query">
+           <a class="label" href="http://www.w3.org/2004/02/skos/core#narrower">narrower</a>
+           <ld-object>...</ld-object>
+        </ld-predicate>
+    </ld-subject>
+</ld-collapsible>
+
+<ld-collapsible title="Bijlage energie (bottom concept)" collapsed>
+    <ld-subject about="https://data.imjv.omgeving.vlaanderen.be/id/concept/bijlage_energie">
+        <ld-predicate about="http://www.w3.org/2004/02/skos/core#inScheme" endpoint="http://imjv-fuseki-on-1.vm.cumuli.be:3030/imjv/query">
+           <a class="label" href="http://www.w3.org/2004/02/skos/core#inScheme">inScheme</a>
+           <ld-object>...</ld-object>
+        </ld-predicate>
+
+        <ld-predicate about="http://www.w3.org/2004/02/skos/core#broader" endpoint="http://imjv-fuseki-on-1.vm.cumuli.be:3030/imjv/query">
+           <a class="label" href="http://www.w3.org/2004/02/skos/core#broader">broader</a>
+           <ld-object>...</ld-object>
+        </ld-predicate>
+    </ld-subject>
+</ld-collapsible>
+
+<hr/>
+
 <ld-collapsible title="Inkomende relaties">
     <ld-subject about="https://data.imjv.omgeving.vlaanderen.be/id/emissiepunt/01749024006625/6808">
         <ld-predicate inbound about="http://purl.org/vocab/lifecycle/schema#stateOf" endpoint="http://imjv-fuseki-on-1.vm.cumuli.be:3030/imjv/query">
