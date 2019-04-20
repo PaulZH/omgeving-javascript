@@ -73,7 +73,7 @@
 
             initCoordinates() {
                 if (this.x && this.y) {
-                    this.coordinates = [this.x, this.y];
+                    this.coordinates = [parseFloat(this.x), parseFloat(this.y)];
                 }
 
                 if (this.lat && this.lon) {
