@@ -6,7 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-* page size selector in `ld-data-table`
+* \-
+
+## [1.5.0] - 2019-04-22
+
+### Added
+
+* Page size selector in `ld-data-table`
+
+### Changed
+
+* Fine-tuned styles.
+* Updated demo files.
 
 ## [1.4.0] - 2019-04-20
 

@@ -180,7 +180,7 @@ Available components:
 
 ### `<ld-data-table>`
 
-* Renders a data table with row count info, sorting, and pagination.
+* Renders a data table with row count info, sorting options, page size selector, and pagination.
 * Requires a `query` attribute with a pointer to a query template (see `src/queries/list-by-type.rq` for the format).
 * Requires a `count-query` attribute with a pointer to a COUNT-query template (see `src/queries/list-by-type-count.rq` for the format).
 * Requires a `search-fields` attribute for specifying which variables in the query templates should be used for filtering.
