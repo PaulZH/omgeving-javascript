@@ -1,7 +1,6 @@
 <template>
     <div class="ld-data-table" :class="{ loading: loading }">
         <ld-card>
-            <div class="loader" :class="{ loading: loading }"></div>
             <div class="rows">
                 <table>
                     <thead>
@@ -30,6 +29,7 @@
                     </tbody>
                 </table>
             </div>
+            <div class="loader" :class="{ loading: loading }"></div>
             <div class="controls">
                 <flex-container no-gutter>
                     <flex-item dsk="25" tab="50" mob="100" no-gutter>
@@ -39,7 +39,7 @@
                     </flex-item>
                     <flex-item dsk="25" tab="50" mob="100" no-gutter>
                         <form @submit.prevent class="page-size">
-                            Per pagina: 
+                            Per pagina:
                             <select v-model="pageSize">
                                 <template v-for="size in pageSizes">
                                     <option :value="size">{{ size }}</option>
@@ -127,17 +127,18 @@
         transition: opacity 0.5s;
 
         .ld-card {
-            min-height: 400px;
+            min-height: 375px;
         }
 
         &.loading {
             td, .controls {
-                opacity: 0.8;
+                opacity: 0.5;
             }
         }
 
         .rows {
             min-height: 300px;
+            overflow: auto;
 
             table {
                 width: 100%;
@@ -149,6 +150,7 @@
                 margin: 0;
                 position: relative;
                 overflow: auto;
+                display: table;
 
                 thead {
                     vertical-align: middle;
@@ -201,9 +203,13 @@
             }
         }
 
+        .loader {
+            border-top: 1px solid $grey-light;
+            height: 3px !important;
+        }
+
         .controls {
             padding: 16px;
-            border-top: 1px solid $grey-light;
 
             .search {
                 input {
@@ -240,6 +246,9 @@
                     line-height: 36px;
                     font-size: 16px;
                     padding: 0 16px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
 
