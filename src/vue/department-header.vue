@@ -38,6 +38,8 @@
             font-size: 15px;
             color: $header-color;
             border-bottom: 1px solid $border-color-dark;
+            white-space: nowrap;
+            overflow: hidden;
 
             a {
                 color: $header-link-color !important;
@@ -89,6 +91,7 @@
         .banner {
             height: 132px;
             background: #fff url(../img/website-header-bg.png) center top no-repeat;
+            overflow: hidden;
 
             @media (max-width: 845px) {
                 background: #fff;
