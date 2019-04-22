@@ -31,11 +31,23 @@
                 </table>
             </div>
             <div class="controls">
-                <flex-container>
-                    <flex-item dsk="50" tab="100" class="search">
-                        <input type="text" v-model="search" placeholder="Filteren ..." />
+                <flex-container no-gutter>
+                    <flex-item dsk="25" tab="50" mob="100" no-gutter>
+                        <form @submit.prevent class="search">
+                            <input type="text" v-model="search" placeholder="Filteren ..." />
+                        </form>
                     </flex-item>
-                    <flex-item dsk="50" tab="100" class="pagination">
+                    <flex-item dsk="25" tab="50" mob="100" no-gutter>
+                        <form @submit.prevent class="page-size">
+                            Per pagina: 
+                            <select v-model="pageSize">
+                                <template v-for="size in pageSizes">
+                                    <option :value="size">{{ size }}</option>
+                                </template>
+                            </select>
+                        </form>
+                    </flex-item>
+                    <flex-item dsk="50" tab="100" class="pagination" no-gutter>
                         <span class="info">
                             <span class="page-info" v-if="pageCount">
                                 Pagina {{ page }}/{{ pageCount }}
@@ -44,12 +56,14 @@
                                 ({{ rowCount.toLocaleString() }} treffer{{ rowCount !== 1 ? 's' : ''}})
                             </span>
                         </span>
-                        <button v-if="prevOffset !== null" @click="offset = prevOffset" :title="prevOffset" :class="{ disabled: offset === prevOffset}">
-                            <v-icon>chevron_left</v-icon>
-                        </button>
-                        <button v-if="nextOffset !== null" @click="offset = nextOffset" :title="nextOffset" :class="{ disabled: offset === nextOffset}">
-                            <v-icon>chevron_right</v-icon>
-                        </button>
+                        <span class="buttons">
+                            <button v-if="prevOffset !== null" @click="offset = prevOffset" :title="prevOffset" :class="{ disabled: offset === prevOffset}">
+                                <v-icon>chevron_left</v-icon>
+                            </button>
+                            <button v-if="nextOffset !== null" @click="offset = nextOffset" :title="nextOffset" :class="{ disabled: offset === nextOffset}">
+                                <v-icon>chevron_right</v-icon>
+                            </button>
+                        </span>
                     </flex-item>
                 </flex-container>
             </div>
@@ -64,6 +78,7 @@
         props: ['query', 'countQuery', 'resource', 'searchFields'],
         data() {
             return {
+                pageSizes: [5, 10, 20, 25, 50, 100, 250]
             }
         },
 
@@ -186,21 +201,34 @@
             }
         }
 
-
         .controls {
-            padding: 16px 16px 0;
+            padding: 16px;
+            border-top: 1px solid $grey-light;
 
-            input {
-                width: 100%;
-                padding: 8px 10px;
-                font-size: 14px;
-                line-height: 18px;
-                border: 1px solid $border-color-dark;
-                vertical-align: top;
-                margin-bottom: 5px;
+            .search {
+                input {
+                    width: 100%;
+                    padding: 8px 10px;
+                    font-size: 14px;
+                    line-height: 18px;
+                    border: 1px solid $border-color-dark;
+                    vertical-align: top;
+                    margin-bottom: 5px;
 
-                &:focus {
-                    border: 1px solid $border-color-green;
+                    &:focus {
+                        border: 1px solid $border-color-green;
+                    }
+                }
+            }
+
+            .page-size {
+                line-height: 36px;
+                font-size: 16px;
+                padding-left: 4%;
+                text-align: right;
+
+                select {
+                    max-width: 75px !important;
                 }
             }
 
@@ -215,36 +243,45 @@
                 }
             }
 
-            button {
-                display: inline-block;
-                text-align: center;
-                vertical-align: middle;
-                cursor: pointer;
-                height: 36px;
-                width: 36px;
-                background-color: $green;
-                border: none;
-
-                &.disabled {
-                    cursor: default;
-                    background-color: $grey-light;
-                    &:hover, &:focus, &::-moz-focus-inner {
-                        cursor: default;
-                        background-color: $grey-light;
-                    }
-                }
-
-                &:hover, &:focus, &::-moz-focus-inner {
-                  background-color: #42796d;
-                  outline: 0;
-                  border: 0;
-                }
-
-                .v-icon {
+            .buttons {
+                white-space: nowrap;
+                button {
+                    display: inline-block;
+                    text-align: center;
+                    vertical-align: middle;
+                    cursor: pointer;
                     height: 36px;
                     width: 36px;
-                    color: #fff;
-                    vertical-align: middle;
+                    background-color: $green;
+                    border: none;
+
+                    &.disabled {
+                        cursor: default;
+                        background-color: $grey-light;
+                        &:hover, &:focus, &::-moz-focus-inner {
+                            cursor: default;
+                            background-color: $grey-light;
+                        }
+                    }
+
+                    &:hover, &:focus, &::-moz-focus-inner {
+                      background-color: #42796d;
+                      outline: 0;
+                      border: 0;
+                    }
+
+                    .v-icon {
+                        height: 36px;
+                        width: 36px;
+                        color: #fff;
+                        vertical-align: middle;
+                    }
+                }
+            }
+
+            @media (max-width: 599px) {
+                .search, .page-size, .pagination {
+                    text-align: center;
                 }
             }
         }

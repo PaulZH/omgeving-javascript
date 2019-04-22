@@ -88,6 +88,10 @@ export default {
             this.offset = 0;
             this.fetchRows();
         },
+        pageSize() {
+            this.offset = 0;
+            this.fetchRows();
+        },
         search: _.debounce(function(value) {
             this.offset = this.rowCount = 0;
             this.fetchRows();
