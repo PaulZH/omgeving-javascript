@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
 fs.emptyDir(path.resolve(__dirname, '../dist'));
 
