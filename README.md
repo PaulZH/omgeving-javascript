@@ -44,7 +44,6 @@ UI components for Departement Omgeving's Linked Data websites.
 
 * At the moment, the components should not be mixed with the [jQuery-based Linked Data widgets](https://gitlab.com/bnowack/lnedata-ui). 
 * The base URL of the the target site should be `/` (for running the code in a sub-directory, another build configuration would be needed).
-* Link hrefs are not rewritten to the current site's base URL. During testing, you need to adjust URLs manually when clicking on not-yet-published links.
 
 ## Components
 
