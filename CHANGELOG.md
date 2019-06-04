@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * \-
 
+## [1.6.0] - 2019-06-04
+
+### Changed
+
+* `ld-object` and `ld-taxonomy`: Link URLs from the same URI space as the page subject get replaced with local paths
+  (only on left-click; it is still possible to copy or open the original URI via right-click).
+
 ## [1.5.0] - 2019-04-22
 
 ### Added
