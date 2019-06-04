@@ -1,5 +1,5 @@
 const fs = require('fs');
-let builder = require('bn-deployer').builder;
+let builder = require('@bnowack/deployer').builder;
 
 builder
     .init({
