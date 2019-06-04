@@ -3,7 +3,7 @@
         <li v-for="(row, index) in rows" :key="index" :class="{ expanded: expanded[row.uri.value], 'is-subject': subject === row.uri.value }">
             <v-icon class="empty-arrow" title="last entry">last_page</v-icon>
             <v-icon class="toggle-arrow" @click="toggle(row.uri.value)">chevron_right</v-icon>
-            <a v-if="row.uri.type === 'uri'" :href="row.uri.value">{{ row.label ? row.label.value : row.uri.value }}</a>
+            <a v-if="row.uri.type === 'uri'" :href="row.uri.value" @click="onClick">{{ row.label ? row.label.value : row.uri.value }}</a>
             <template v-else>{{ row.uri.value }}</template>
             <ld-taxonomy v-if="expanded[row.uri.value]" :endpoint="endpoint" :graph="graph" :subject="subject" :predicate="predicate" :parent="row.uri.value" :chain="conceptChain"></ld-taxonomy>
         </li>
@@ -12,8 +12,9 @@
 
 <script>
     import sparqlMixin from '../js/sparql-mixin';
+    import localHrefMixin from '../js/localHrefMixin';
     export default {
-        mixins: [sparqlMixin],
+        mixins: [sparqlMixin, localHrefMixin],
         props: ['subject', 'predicate', 'parent', 'chain'],
         data() {
             return {

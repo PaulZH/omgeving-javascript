@@ -3,12 +3,16 @@
         <ld-card v-if="bnode">
             <slot></slot>
         </ld-card>
-        <slot v-else></slot>
+        <span v-else @click.capture="onClick">
+            <slot></slot>
+        </span>
     </div>
 </template>
 
 <script>
+    import localHrefMixin from '../js/localHrefMixin';
     export default {
+        mixins: [localHrefMixin],
         props: {
             bnode: Boolean
         },
