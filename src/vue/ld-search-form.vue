@@ -1,7 +1,7 @@
 <template>
     <div class="ld-search-form">
         <h4 class="pane-toggle"><slot></slot></h4>
-        <form class="pane" method="GET" @submit="onSubmit" @reset="onReset">
+        <form class="pane" method="GET" @submit.prevent="onSubmit" @reset="onReset">
             <div class="fields">
                 <flex-container>
                     <flex-item dsk="66" tab="50" mob="100">

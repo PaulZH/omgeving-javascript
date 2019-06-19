@@ -1,7 +1,7 @@
 <template>
     <div class="ld-sparql-form">
         <h4 class="pane-toggle"><slot></slot></h4>
-        <form class="pane" method="GET" @submit="onSubmit" @reset="onSparqlReset">
+        <form class="pane" method="GET" @submit.prevent="onSubmit" @reset="onSparqlReset">
             <div class="fields">
                 <textarea v-model="inputValue" placeholder="Voer een SPARQL zoekopdracht in ..."></textarea>
             </div>
