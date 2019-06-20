@@ -8,6 +8,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * \-
 
+## [1.7.0] - 2019-06-20
+
+### Changed
+
+* `ld-data-table`: Link URLs from the same URI space as the table resource (or page subject as fallback)  get
+  replaced with local paths  (only on left-click; it is still possible to copy or open the original URI via right-click).
+
+### Added
+
+* Added deployed query templates to repository.
+
+### Fixed
+
+* Submitting `ld-lookup-form`, `ld-search-form`, and `ld-sparql-form` works properly in Chrome and Safari now.
+
+### Security 
+
+* Audited vulnerable npm dependencies.
+
 ## [1.6.0] - 2019-06-04
 
 ### Changed
