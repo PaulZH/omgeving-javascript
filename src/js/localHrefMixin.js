@@ -5,7 +5,10 @@ export default {
         }
     },
     mounted() {
-        let subject = document.querySelector('body').getAttribute('about') || location.href;
+        let subject =
+            this.resource ||
+            document.querySelector('body').getAttribute('about') ||
+            location.href;
         this.subjectBase = subject.replace(/^(.+:\/\/[^\/]+)\/.*$/, '$1');// e.g. https://data.imjv.omgeving.vlaanderen.be
     },
     methods: {

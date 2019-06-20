@@ -20,7 +20,7 @@
                             <td class="row-index">{{ index + loadedOffset + 1 }}</td>
                             <td v-for="field in fields" v-if="!field.name.match(/^_/)">
                                 <span v-if="!row[field.name]">-</span>
-                                <a v-else-if="row[field.name].type === 'uri'" :href="row[field.name].value">
+                                <a v-else-if="row[field.name].type === 'uri'" :href="row[field.name].value" @click="onClick">
                                     {{ getFieldLabel(field.name, row) }}
                                 </a>
                                 <span v-else>{{ row[field.name].value }}</span>
@@ -73,8 +73,9 @@
 
 <script>
     import sparqlMixin from '../js/sparql-mixin';
+    import localHrefMixin from '../js/localHrefMixin';
     export default {
-        mixins: [sparqlMixin],
+        mixins: [sparqlMixin, localHrefMixin],
         props: ['query', 'countQuery', 'resource', 'searchFields'],
         data() {
             return {
